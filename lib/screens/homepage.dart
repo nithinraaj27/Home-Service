@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:home_service/Animation/animation.dart';
 import 'package:home_service/sizeconfig.dart';
 
 class HomePage extends StatelessWidget {
@@ -64,12 +65,15 @@ class HomePage extends StatelessWidget {
             ),
             Expanded(
               flex: 1,
-              child: Text(
-                "Which service do you need?",
-                style: Theme.of(context).textTheme.headline3!.copyWith(
-                      fontSize: SizeConfig.height! * 3.7,
-                      fontWeight: FontWeight.bold,
-                    ),
+              child: FadeAnimation(
+                1,
+                Text(
+                  "Which service do you need?",
+                  style: Theme.of(context).textTheme.headline3!.copyWith(
+                        fontSize: SizeConfig.height! * 3.7,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
               ),
             ),
             SizedBox(
@@ -127,34 +131,37 @@ class ServiceCards extends StatelessWidget {
     );
   }
 
-  Container _serviceBox(Color _color, BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          color: _color,
-          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-          border: Border.all(color: Colors.grey)),
-      child: Column(
-        children: <Widget>[
-          Expanded(
-            flex: 4,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image.asset(
-                image,
+  FadeAnimation _serviceBox(Color _color, BuildContext context) {
+    return FadeAnimation(
+      1.5,
+      Container(
+        decoration: BoxDecoration(
+            color: _color,
+            borderRadius: BorderRadius.all(Radius.circular(20.0)),
+            border: Border.all(color: Colors.grey)),
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              flex: 4,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset(
+                  image,
+                ),
               ),
             ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Text(
-              name,
-              style: Theme.of(context).textTheme.headline3!.copyWith(
-                    fontSize: SizeConfig.height! * 1.7,
-                    fontWeight: FontWeight.bold,
-                  ),
+            Expanded(
+              flex: 1,
+              child: Text(
+                name,
+                style: Theme.of(context).textTheme.headline3!.copyWith(
+                      fontSize: SizeConfig.height! * 1.7,
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
