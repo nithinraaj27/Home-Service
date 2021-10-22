@@ -33,12 +33,6 @@ class _mainPageState extends State<mainPage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      floatingActionButton: new FloatingActionButton(
-          child: Icon(Icons.logout),
-          onPressed: () {
-            FirebaseAuth.instance.signOut();
-            googlesigninclass.logout();
-          }),
       bottomNavigationBar: NavbarAnim(
         1,
         ClipRRect(
@@ -47,7 +41,7 @@ class _mainPageState extends State<mainPage> {
             topRight: Radius.circular(55),
           ),
           child: new BottomNavigationBar(
-              backgroundColor: Theme.of(context).primaryColor,
+              backgroundColor: Color(0xff23ADE8),
               selectedItemColor: Colors.white,
               type: BottomNavigationBarType.fixed,
               currentIndex: _selectedPage,
