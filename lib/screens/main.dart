@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:home_service/Animation/animation.dart';
+import 'package:home_service/screens/profile.dart';
 import 'package:home_service/service/googlesignin.dart';
 import 'package:home_service/sizeconfig.dart';
 
@@ -25,9 +26,7 @@ class _mainPageState extends State<mainPage> {
     Center(
       child: Text("Booking"),
     ),
-    Center(
-      child: Text("Profile"),
-    ),
+    profile(),
   ];
 
   @override
