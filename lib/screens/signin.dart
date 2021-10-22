@@ -295,7 +295,7 @@ class _signinState extends State<signin> {
                             borderRadius: BorderRadius.circular(15),
                             color: Colors.blue,
                           ),
-                          child: Expanded(child: Text("Sign in with Mobile",style: Theme.of(context).textTheme.subtitle2!.merge(TextStyle(color: Colors.white)),)),
+                          child: Expanded(child: Text("Sign in with Mobile",style: Theme.of(context).textTheme.subtitle2!.merge(TextStyle(color: Colors.white,fontSize: SizeConfig.height! * 2.5)),)),
                         ),
                       ),
                     ),
@@ -323,7 +323,7 @@ class _signinState extends State<signin> {
                               Expanded(child: Image.asset("assets/google.png",height: SizeConfig.height! * 3,)),
                               Expanded(
                                   flex: 3,
-                                  child: Text("Sign in with Google",style: Theme.of(context).textTheme.subtitle2!.merge(TextStyle(color: Colors.black54,fontSize: SizeConfig.width! * 4)),)),
+                                  child: Text("Sign in with Google",style: Theme.of(context).textTheme.subtitle2!.merge(TextStyle(color: Colors.black54,fontSize: SizeConfig.width! * 2.5)),)),
                             ],
                           ),
                         ),
