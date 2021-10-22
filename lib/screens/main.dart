@@ -8,6 +8,8 @@ import 'package:home_service/Animation/animation.dart';
 import 'package:home_service/service/googlesignin.dart';
 import 'package:home_service/sizeconfig.dart';
 
+import 'homepage.dart';
+
 class mainPage extends StatefulWidget {
   const mainPage({Key? key}) : super(key: key);
 
@@ -19,9 +21,7 @@ class _mainPageState extends State<mainPage> {
   int _selectedPage = 0;
   final GoogleSignIn _googleSignIn = new GoogleSignIn();
   List<Widget> _tabs = [
-    Center(
-      child: Text("Home"),
-    ),
+    HomePage(),
     Center(
       child: Text("Booking"),
     ),
@@ -34,13 +34,12 @@ class _mainPageState extends State<mainPage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          floatingActionButton: new FloatingActionButton(
-              child: Icon(Icons.logout),
-              onPressed: (){
-                FirebaseAuth.instance.signOut();
-                googlesigninclass.logout();
-              }
-          ),
+      floatingActionButton: new FloatingActionButton(
+          child: Icon(Icons.logout),
+          onPressed: () {
+            FirebaseAuth.instance.signOut();
+            googlesigninclass.logout();
+          }),
       bottomNavigationBar: NavbarAnim(
         1,
         ClipRRect(
