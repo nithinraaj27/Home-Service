@@ -40,7 +40,6 @@ dependencies:
   google_sign_in: ^4.1.1
   simple_animations: ^1.3.3
   flutter_animated_dialog:
-  flutter_secure_storage: ^4.2.0
   pinput: ^0.2.6
 
 dev_dependencies:
