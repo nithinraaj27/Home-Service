@@ -4,9 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:home_service/Animation/animation.dart';
+import 'package:home_service/screens/Profile_Page/about.dart';
+import 'package:home_service/screens/Profile_Page/rate.dart';
+import 'package:home_service/screens/Profile_Page/register_service_provider.dart';
+import 'package:home_service/screens/Profile_Page/saved.dart';
+import 'package:home_service/screens/Profile_Page/scheduled_booking.dart';
+import 'package:home_service/screens/Profile_Page/settings.dart';
+import 'package:home_service/screens/Profile_Page/share.dart';
 import 'package:home_service/service/user_details.dart';
 import 'package:home_service/sizeconfig.dart';
-
 import 'package:provider/provider.dart';
 
 import 'edit_profile.dart';
@@ -125,13 +131,13 @@ class _profileState extends State<profile> {
                           ),
                         )),
                     Lists("Register as Service Provider",
-                        Icons.handyman_outlined),
-                    Lists("About Company", Icons.info_outline),
-                    Lists("Share Company", Icons.share_outlined),
-                    Lists("Scheduled Booking", Icons.bookmark_outline_outlined),
-                    Lists("Saved Services", Icons.home_repair_service_outlined),
-                    Lists("Rate Company", Icons.star),
-                    Lists("Settings", Icons.settings),
+                        Icons.handyman_outlined,service_provider()),
+                    Lists("About Company", Icons.info_outline,about()),
+                    Lists("Share Company", Icons.share_outlined,share()),
+                    Lists("Scheduled Booking", Icons.bookmark_outline_outlined,schedules()),
+                    Lists("Saved Services", Icons.home_repair_service_outlined,saved()),
+                    Lists("Rate Company", Icons.star,rate()),
+                    Lists("Settings", Icons.settings,settings()),
                     Expanded(
                         child: Container(
                           color: Colors.white,
@@ -156,7 +162,7 @@ class _profileState extends State<profile> {
             )));
   }
 
-  Expanded Lists(String txt, IconData icon) {
+  Expanded Lists(String txt, IconData icon,Widget widget ) {
     return Expanded(
         child: Container(
           color: Colors.white,
@@ -164,19 +170,24 @@ class _profileState extends State<profile> {
             children: [
               Expanded(
                 flex: 2,
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: SizeConfig.width!*2),
-                  child: ListTile(
-                    leading: Icon(
-                      icon,
-                      color: Colors.black54,
-                      size: SizeConfig.height! * 3,
-                    ),
-                    title: Text(
-                      txt,
-                      style: GoogleFonts.poppins(
-                        fontSize: SizeConfig.height! * 2,
+                child: GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>widget));
+                  },
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: SizeConfig.width!*2),
+                    child: ListTile(
+                      leading: Icon(
+                        icon,
                         color: Colors.black54,
+                        size: SizeConfig.height! * 3,
+                      ),
+                      title: Text(
+                        txt,
+                        style: GoogleFonts.poppins(
+                          fontSize: SizeConfig.height! * 2,
+                          color: Colors.black54,
+                        ),
                       ),
                     ),
                   ),

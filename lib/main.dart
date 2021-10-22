@@ -1,16 +1,10 @@
 
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:home_service/screens/locationgetter.dart';
 import 'package:home_service/screens/main.dart';
-import 'package:home_service/screens/mobilesignin.dart';
-import 'package:home_service/screens/signin.dart';
-import 'package:home_service/screens/signup.dart';
+import 'package:home_service/screens/Main_Page/signin.dart';
 import 'package:home_service/service/user_details.dart';
 import 'package:home_service/sizeconfig.dart';
 import 'package:home_service/style/appState.dart';

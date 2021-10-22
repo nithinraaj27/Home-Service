@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:home_service/Animation/animation.dart';
 
-import '../sizeconfig.dart';
+import '../../sizeconfig.dart';
 
 class change_password extends StatefulWidget {
   const change_password({Key? key}) : super(key: key);

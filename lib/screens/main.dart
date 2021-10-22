@@ -1,15 +1,13 @@
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:home_service/Animation/animation.dart';
-import 'package:home_service/screens/profile.dart';
-import 'package:home_service/service/googlesignin.dart';
+import 'package:home_service/screens/Bookings/bookings.dart';
+import 'package:home_service/screens/Profile_Page/profile.dart';
 import 'package:home_service/sizeconfig.dart';
 
-import 'homepage.dart';
+import 'Home_Page/homepage.dart';
 
 class mainPage extends StatefulWidget {
   const mainPage({Key? key}) : super(key: key);
@@ -23,9 +21,7 @@ class _mainPageState extends State<mainPage> {
   final GoogleSignIn _googleSignIn = new GoogleSignIn();
   List<Widget> _tabs = [
     HomePage(),
-    Center(
-      child: Text("Booking"),
-    ),
+   bookings(),
     profile(),
   ];
 

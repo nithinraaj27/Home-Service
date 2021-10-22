@@ -1,12 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:home_service/Animation/animation.dart';
-import 'package:home_service/screens/main.dart';
-import 'package:home_service/screens/mobilesignin.dart';
-import 'package:home_service/screens/signup.dart';
+import 'package:home_service/screens/Main_Page/mobilesignin.dart';
+import 'package:home_service/screens/Main_Page/signup.dart';
 import 'package:home_service/service/googlesignin.dart';
 import 'package:home_service/sizeconfig.dart';
 
