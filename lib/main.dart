@@ -11,6 +11,7 @@ import 'package:home_service/screens/main.dart';
 import 'package:home_service/screens/mobilesignin.dart';
 import 'package:home_service/screens/signin.dart';
 import 'package:home_service/screens/signup.dart';
+import 'package:home_service/service/user_details.dart';
 import 'package:home_service/sizeconfig.dart';
 import 'package:home_service/style/appState.dart';
 import 'package:home_service/style/appTheme.dart';
@@ -124,13 +125,18 @@ class helpertwo extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig.init(context);
 
-    return Consumer<AppStateNotifier>(builder: (context, appState, child) {
-      return MaterialApp(
-        home: mainPage(),
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.theme,
-      );
-    });
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<user_details>.value(value: (user_details())),
+      ],
+      child: Consumer<AppStateNotifier>(builder: (context, appState, child) {
+        return MaterialApp(
+          home: mainPage(),
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.theme,
+        );
+      }),
+    );
   }
 }
 
