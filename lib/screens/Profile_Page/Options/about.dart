@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../sizeconfig.dart';
+import '../../../sizeconfig.dart';
 
 class about extends StatefulWidget {
   const about({Key? key}) : super(key: key);

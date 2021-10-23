@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../sizeconfig.dart';
+import '../../../sizeconfig.dart';
 
-class schedules extends StatefulWidget {
-  const schedules({Key? key}) : super(key: key);
+class saved extends StatefulWidget {
+  const saved({Key? key}) : super(key: key);
 
   @override
-  _schedulesState createState() => _schedulesState();
+  _savedState createState() => _savedState();
 }
 
-class _schedulesState extends State<schedules> {
+class _savedState extends State<saved> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -18,7 +18,7 @@ class _schedulesState extends State<schedules> {
           appBar: AppBar(
             backgroundColor: Color(0xff23ADE8),
             title: Text(
-              "Scheduled Bookings",
+              "Saved Bookings",
               style: GoogleFonts.poppins(
                   fontSize: SizeConfig.height! * 2.5, fontWeight: FontWeight.w500),
             ),
@@ -26,7 +26,7 @@ class _schedulesState extends State<schedules> {
           body: Center(
             child: Container(
               alignment: Alignment.center,
-              child: Text("Scheduled Bookings"),
+              child: Text("Saved Services"),
             ),
           ),
         ));

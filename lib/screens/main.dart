@@ -21,7 +21,7 @@ class _mainPageState extends State<mainPage> {
   final GoogleSignIn _googleSignIn = new GoogleSignIn();
   List<Widget> _tabs = [
     HomePage(),
-   bookings(),
+    bookings(),
     profile(),
   ];
 
@@ -41,7 +41,7 @@ class _mainPageState extends State<mainPage> {
               selectedItemColor: Colors.white,
               type: BottomNavigationBarType.fixed,
               currentIndex: _selectedPage,
-              unselectedItemColor: Colors.black,
+              unselectedItemColor: Colors.white.withOpacity(0.6),
               onTap: (val) {
                 setState(() {
                   _selectedPage = val;

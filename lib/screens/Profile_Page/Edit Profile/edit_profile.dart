@@ -4,12 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:home_service/Animation/animation.dart';
-import 'package:home_service/screens/Profile_Page/change_password.dart';
+import 'package:home_service/screens/Profile_Page/Edit%20Profile/change_password.dart';
 import 'package:home_service/service/user_details.dart';
+import 'package:home_service/sizeconfig.dart';
 import 'package:provider/provider.dart';
 
-
-import '../../sizeconfig.dart';
 
 class edit_profile extends StatefulWidget {
   const edit_profile({Key? key}) : super(key: key);

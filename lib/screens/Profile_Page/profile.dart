@@ -4,18 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:home_service/Animation/animation.dart';
-import 'package:home_service/screens/Profile_Page/about.dart';
-import 'package:home_service/screens/Profile_Page/rate.dart';
-import 'package:home_service/screens/Profile_Page/register_service_provider.dart';
-import 'package:home_service/screens/Profile_Page/saved.dart';
-import 'package:home_service/screens/Profile_Page/scheduled_booking.dart';
-import 'package:home_service/screens/Profile_Page/settings.dart';
-import 'package:home_service/screens/Profile_Page/share.dart';
+import 'package:home_service/screens/Profile_Page/Options/about.dart';
+import 'package:home_service/screens/Profile_Page/Options/rate.dart';
+import 'package:home_service/screens/Profile_Page/Options/Service_Provider/register_service_provider.dart';
+import 'package:home_service/screens/Profile_Page/Options/saved.dart';
+import 'package:home_service/screens/Profile_Page/Options/scheduled_booking.dart';
+import 'package:home_service/screens/Profile_Page/Options/settings.dart';
+import 'package:home_service/screens/Profile_Page/Options/share.dart';
 import 'package:home_service/service/user_details.dart';
 import 'package:home_service/sizeconfig.dart';
 import 'package:provider/provider.dart';
 
-import 'edit_profile.dart';
+import 'Edit Profile/edit_profile.dart';
+
+
 
 class profile extends StatefulWidget {
   final String? Name;
@@ -33,8 +35,8 @@ class _profileState extends State<profile> {
   @override
   void initState() {
     // TODO: implement initState
-    super.initState();
     Provider.of<user_details>(context,listen: false).set_data();
+    super.initState();
   }
   @override
   Widget build(BuildContext context) {
@@ -96,7 +98,7 @@ class _profileState extends State<profile> {
                                             },
                                             child: FaIcon(
                                               Icons.edit,
-                                              color: Color(0xff23ADE8),
+                                              color: Colors.lightBlue.shade900,
                                               size: SizeConfig.height! * 3,
                                             ),
                                           ),

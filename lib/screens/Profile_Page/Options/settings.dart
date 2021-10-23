@@ -2,9 +2,9 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:home_service/screens/Profile_Page/edit_profile.dart';
+import 'package:home_service/screens/Profile_Page/Edit%20Profile/edit_profile.dart';
 
-import '../../sizeconfig.dart';
+import '../../../sizeconfig.dart';
 
 class settings extends StatefulWidget {
   const settings({Key? key}) : super(key: key);

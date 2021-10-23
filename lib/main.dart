@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:home_service/screens/main.dart';
 import 'package:home_service/screens/Main_Page/signin.dart';
+import 'package:home_service/service/get_services.dart';
 import 'package:home_service/service/user_details.dart';
 import 'package:home_service/sizeconfig.dart';
 import 'package:home_service/style/appState.dart';
@@ -122,6 +123,7 @@ class helpertwo extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<user_details>.value(value: (user_details())),
+        ChangeNotifierProvider<get_services>.value(value: (get_services())),
       ],
       child: Consumer<AppStateNotifier>(builder: (context, appState, child) {
         return MaterialApp(

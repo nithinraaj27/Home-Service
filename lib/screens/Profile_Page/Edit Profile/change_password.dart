@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:home_service/Animation/animation.dart';
+import 'package:home_service/screens/Main_Page/forgetpassword.dart';
+import 'package:home_service/sizeconfig.dart';
 
-import '../../sizeconfig.dart';
+
 
 class change_password extends StatefulWidget {
   const change_password({Key? key}) : super(key: key);
@@ -190,10 +192,15 @@ class _change_passwordState extends State<change_password> {
                 ),),
                 Expanded(child: Container(
                   alignment: Alignment.topCenter,
-                  child: Text("Forgot Password ??",style: GoogleFonts.poppins(
-                    fontSize: SizeConfig.height! * 2,
-                    color: Colors.black,
-                  ),),
+                  child: GestureDetector(
+                    onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => forgetpassword()));
+                    },
+                    child: Text("Forgot Password ??",style: GoogleFonts.poppins(
+                      fontSize: SizeConfig.height! * 2,
+                      color: Colors.black,
+                    ),),
+                  ),
                 ),),
               ],
             ),
