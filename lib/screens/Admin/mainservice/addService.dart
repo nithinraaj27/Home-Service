@@ -10,8 +10,8 @@ import 'package:home_service/service/user_details.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
-import '../../sizeconfig.dart';
-import 'addsubservice.dart';
+import '../../../sizeconfig.dart';
+import '../subservice/addsubservice.dart';
 
 class addService extends StatefulWidget {
   const addService({Key? key}) : super(key: key);

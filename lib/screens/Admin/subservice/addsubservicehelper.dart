@@ -8,8 +8,8 @@ import 'package:home_service/screens/Admin/service/add_subservices.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
-import '../../sizeconfig.dart';
-import 'Admin_main.dart';
+import '../../../sizeconfig.dart';
+import '../Admin_main.dart';
 import 'addsubservice.dart';
 
 class addsubservicehelper extends StatefulWidget {

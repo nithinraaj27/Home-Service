@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:home_service/Animation/animation.dart';
-import 'package:home_service/screens/Admin/addService.dart';
-import 'package:home_service/screens/Admin/addsubservice.dart';
+import 'package:home_service/screens/Admin/mainservice/addService.dart';
+import 'package:home_service/screens/Admin/subservice/addsubservice.dart';
 import 'package:home_service/sizeconfig.dart';
 
 class adminhome extends StatefulWidget {
