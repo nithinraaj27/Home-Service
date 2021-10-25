@@ -34,13 +34,10 @@ class add_services with ChangeNotifier{
       "name": this._serviceName,
       "image": this._image,
     };
-    await FirebaseFirestore.instance
-        .collection("services")
-        .doc()
-        .set(data);
-
+    DocumentReference dc = FirebaseFirestore.instance.collection("services").doc();
+    await dc.set(data);
+    await dc.collection(this._serviceName).doc("Select Service").set({"sample" : "sample"});
     notifyListeners();
-
     return "Added Successfuly";
   }
 }

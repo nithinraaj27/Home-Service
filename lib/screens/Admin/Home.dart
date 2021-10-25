@@ -44,7 +44,7 @@ class _adminhomeState extends State<adminhome> {
                             Navigator.of(context).push(MaterialPageRoute(builder: (context) => addService()));
                           },
                           child: FadeAnimation(
-                            1.4,Container(
+                            1.1,Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 color: Colors.blue.shade100
@@ -75,7 +75,7 @@ class _adminhomeState extends State<adminhome> {
                             Navigator.of(context).push(MaterialPageRoute(builder: (context) => addsubservice()));
                           },
                           child: FadeAnimation(
-                            1.5,Container(
+                            1.2,Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15),
                                   color: Colors.blue.shade100
@@ -85,7 +85,7 @@ class _adminhomeState extends State<adminhome> {
                               child: Row(
                                 children: [
                                   Expanded(
-                                    child: Icon(Icons.home_repair_service_outlined,
+                                    child: Icon(Icons.home_repair_service,
                                       color: Colors.black,
                                       size: SizeConfig.height! * 5,),
                                   ),
@@ -102,7 +102,7 @@ class _adminhomeState extends State<adminhome> {
                       ),
                       Expanded(
                         child: FadeAnimation(
-                          1.6,Container(
+                          1.3,Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 color: Colors.blue.shade100
@@ -142,7 +142,7 @@ class _adminhomeState extends State<adminhome> {
                             child: Row(
                               children: [
                                 Expanded(
-                                  child: Icon(Icons.home_repair_service,
+                                  child: Icon(Icons.home_repair_service_outlined,
                                     color: Colors.black,
                                     size: SizeConfig.height! * 5,),
                                 ),
@@ -163,7 +163,7 @@ class _adminhomeState extends State<adminhome> {
                             Navigator.of(context).push(MaterialPageRoute(builder: (context) => addsubservice()));
                           },
                           child: FadeAnimation(
-                            1.4,Container(
+                            1.5,Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 color: Colors.blue.shade100
@@ -173,7 +173,7 @@ class _adminhomeState extends State<adminhome> {
                             child: Row(
                               children: [
                                 Expanded(
-                                  child: Icon(Icons.home_repair_service,
+                                  child: Icon(Icons.home_repair_service_outlined,
                                     color: Colors.black,
                                     size: SizeConfig.height! * 5,),
                                 ),
@@ -194,7 +194,7 @@ class _adminhomeState extends State<adminhome> {
                             Navigator.of(context).push(MaterialPageRoute(builder: (context) => addsubservice()));
                           },
                           child: FadeAnimation(
-                            1.4,Container(
+                            1.6,Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 color: Colors.blue.shade100
@@ -204,7 +204,7 @@ class _adminhomeState extends State<adminhome> {
                             child: Row(
                               children: [
                                 Expanded(
-                                  child: Icon(Icons.home_repair_service,
+                                  child: Icon(Icons.delete,
                                     color: Colors.black,
                                     size: SizeConfig.height! * 5,),
                                 ),
@@ -225,97 +225,6 @@ class _adminhomeState extends State<adminhome> {
           ],
         ),
       )),
-    );
-  }
-
-  Row insideRow(String title1,String title2,String num1,String num2) {
-    return Row(
-      children: [
-        Expanded(
-          child: Container(
-            margin: EdgeInsets.symmetric(horizontal: SizeConfig.width! * 4,vertical: SizeConfig.height! * 2),
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment(-1.0, -4.0),
-                    end: Alignment(1.0, 4.0),
-                    colors: [
-                      Colors.blue,
-                      Colors.blue,
-                    ]),
-                borderRadius: BorderRadius.all(Radius.circular(15)),
-                boxShadow: [
-                  BoxShadow(
-                      color: Color(0xFF4ca5d8),
-                      offset: Offset(2.0, 2.0),
-                      blurRadius: 8.0,
-                      spreadRadius: 0.1),
-                  BoxShadow(
-                      color: Color(0xFF5ecdff),
-                      offset: Offset(-2.0, -2.0),
-                      blurRadius: 8.0,
-                      spreadRadius: 0.1),
-                ]),
-            child: Column(
-              children: [
-                Expanded(
-                  child: Container(
-                    child: Text(title1,style: Theme.of(context).textTheme.headline3!.merge(TextStyle(fontSize: SizeConfig.height! * 1.6)),),
-                  ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Container(
-                    alignment: Alignment.topCenter,
-                    child: Text(num1,style: Theme.of(context).textTheme.subtitle2!.merge(TextStyle(fontSize: SizeConfig.height! * 4)),),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        Expanded(
-          child: Container(
-            margin: EdgeInsets.symmetric(horizontal: SizeConfig.width! * 4,vertical: SizeConfig.height! * 2),
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment(-1.0, -4.0),
-                    end: Alignment(1.0, 4.0),
-                    colors: [
-                      Colors.blue,
-                      Colors.blue,
-                    ]),
-                borderRadius: BorderRadius.all(Radius.circular(15)),
-                boxShadow: [
-                  BoxShadow(
-                      color: Color(0xFF4ca5d8),
-                      offset: Offset(2.0, 2.0),
-                      blurRadius: 8.0,
-                      spreadRadius: 0.1),
-                  BoxShadow(
-                      color: Color(0xFF5ecdff),
-                      offset: Offset(-2.0, -2.0),
-                      blurRadius: 8.0,
-                      spreadRadius: 0.1),
-                ]),
-            child: Column(
-              children: [
-                Expanded(
-                  child: Container(
-                    child: Text(title2,style: Theme.of(context).textTheme.headline3!.merge(TextStyle(fontSize: SizeConfig.height! * 1.6)),),
-                  ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Container(
-                    alignment: Alignment.topCenter,
-                    child: Text(num2,style: Theme.of(context).textTheme.subtitle2!.merge(TextStyle(fontSize: SizeConfig.height! * 4)),),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class get_services with ChangeNotifier {
-  var _services = ["Select Services"];
+  var _services;
   String _selected_service = "Select Services";
-  var _sub_services = ["Select Categories", ""];
+  var _sub_services;
   String _selected_catogories = "Select Categories";
   String _selected_Service_docId = "";
 
