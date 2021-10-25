@@ -38,6 +38,7 @@ class _profileState extends State<profile> {
     Provider.of<user_details>(context,listen: false).set_data();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

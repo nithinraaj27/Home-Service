@@ -23,6 +23,11 @@ class AppTheme {
             fontSize: SizeConfig.height! * 2,
             color: Colors.black,
             fontWeight: FontWeight.w500
+        ),
+        headline1: GoogleFonts.poppins(
+            fontSize: SizeConfig.height! * 4,
+            color: Color(0xff23ADE8),
+            fontWeight: FontWeight.w500
         )
       ));
 }

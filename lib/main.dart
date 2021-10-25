@@ -1,8 +1,11 @@
 
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:home_service/screens/Admin/Admin_main.dart';
+import 'package:home_service/screens/Admin/service/add_services.dart';
 import 'package:home_service/screens/main.dart';
 import 'package:home_service/screens/Main_Page/signin.dart';
 import 'package:home_service/service/get_services.dart';
@@ -75,7 +78,7 @@ class _HomeState extends State<Home> {
                       if (_user == null) {
                         return helperone();
                       } else {
-                        return helpertwo();
+                        return userfinder();
                       }
                     }
 
@@ -137,3 +140,59 @@ class helpertwo extends StatelessWidget {
 }
 
 
+class helperthree extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    SizeConfig.init(context);
+
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<user_details>.value(value: (user_details())),
+        ChangeNotifierProvider<get_services>.value(value: (get_services())),
+        ChangeNotifierProvider<add_services>.value(value: (add_services())),
+      ],
+      child: Consumer<AppStateNotifier>(builder: (context, appState, child) {
+        return MaterialApp(
+          home: adminMain(),
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.theme,
+        );
+      }),
+    );
+  }
+}
+
+class userfinder extends StatefulWidget {
+
+  @override
+  _userfinderState createState() => _userfinderState();
+}
+
+class _userfinderState extends State<userfinder> {
+
+  String? role;
+
+  Future<void> checkrole() async {
+    User user = FirebaseAuth.instance.currentUser!;
+    final DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection("userdetails")
+        .doc(user.uid)
+        .get();
+    setState(() {
+      role = snap['Role'];
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkrole();
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return (role == 'admin')? helperthree() : helpertwo();
+  }
+}

@@ -13,6 +13,7 @@ class user_details with ChangeNotifier{
   String _updatedMobile = "";
   String _updatedEmail = "";
 
+
   String get Name => _name;
   String get Mobile => _mobile;
   String get Email => _email;
@@ -38,6 +39,7 @@ class user_details with ChangeNotifier{
   Future<void> update_email(String a) async{
     this._updatedEmail = a;
   }
+
 
 
   Future<String> update() async{

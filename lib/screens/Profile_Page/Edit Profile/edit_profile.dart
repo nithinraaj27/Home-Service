@@ -76,7 +76,6 @@ class _edit_profileState extends State<edit_profile> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
   }
 
 
@@ -174,6 +173,7 @@ class _edit_profileState extends State<edit_profile> {
                               }
                               return null;
                             },
+
                             autovalidate: _autovalidate,
                             decoration:
                             InputDecoration(
@@ -208,7 +208,6 @@ class _edit_profileState extends State<edit_profile> {
                           child: TextFormField(
                             onChanged: (val) {
                               if(val.isEmpty || val == ""){
-
                                 context.read<user_details>().update_email(new_email) as String;
                               }
                               else{
