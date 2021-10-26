@@ -1,14 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class get_services with ChangeNotifier {
-
+class delete_subservice with ChangeNotifier {
   var _services = ['Select Services'];
-  String _selected_service = "Select Services";
+  var _sub_services = ['Select Categories', "Select Services"];
 
-  var _sub_services = ['select Categories', ""];
   String _selected_catogories = "Select Categories";
-
+  String _selected_service = "Select Services";
   String _selected_Service_docId = "";
 
   List<String> get services_list => _services;
@@ -18,6 +16,7 @@ class get_services with ChangeNotifier {
   List<String> get categories => _sub_services;
 
   String get Selected_categories => _selected_catogories;
+  String get id => _selected_Service_docId;
 
   Future<void> fetch_service_list() async {
     if (_services.length <= 1) {
@@ -67,7 +66,14 @@ class get_services with ChangeNotifier {
 
   void set_selected_categories(String a) async {
     this._selected_catogories = a;
-
     notifyListeners();
+  }
+
+  void delete_sub_service() {
+    FirebaseFirestore.instance
+        .collection("services")
+        .doc(this._selected_Service_docId)
+        .collection(this._selected_service)
+        .doc(this._selected_catogories).delete().whenComplete(() => print("deleted"));
   }
 }

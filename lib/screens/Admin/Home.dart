@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:home_service/Animation/animation.dart';
 import 'package:home_service/screens/Admin/mainservice/addService.dart';
+import 'package:home_service/screens/Admin/mainservice/deleteservice.dart';
 import 'package:home_service/screens/Admin/subservice/addsubservice.dart';
+import 'package:home_service/screens/Admin/subservice/deletesubservice.dart';
 import 'package:home_service/sizeconfig.dart';
 
 class adminhome extends StatefulWidget {
@@ -72,10 +73,10 @@ class _adminhomeState extends State<adminhome> {
                       Expanded(
                         child: GestureDetector(
                           onTap: (){
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => addsubservice()));
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => deleteservice()));
                           },
                           child: FadeAnimation(
-                            1.2,Container(
+                            1.3,Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15),
                                   color: Colors.blue.shade100
@@ -85,7 +86,7 @@ class _adminhomeState extends State<adminhome> {
                               child: Row(
                                 children: [
                                   Expanded(
-                                    child: Icon(Icons.home_repair_service,
+                                    child: Icon(Icons.delete_sharp,
                                       color: Colors.black,
                                       size: SizeConfig.height! * 5,),
                                   ),
@@ -93,35 +94,9 @@ class _adminhomeState extends State<adminhome> {
                                       flex: 3,
                                       child: Container(
                                           alignment: Alignment.centerLeft,
-                                          child: Text("Update Services",style: Theme.of(context).textTheme.subtitle2!.merge(TextStyle(fontSize: SizeConfig.height! * 3,color: Colors.black)),))),
+                                          child: Text("Delete Services",style: Theme.of(context).textTheme.subtitle2!.merge(TextStyle(fontSize: SizeConfig.height! * 3,color: Colors.black)),))),
                                 ],
                               ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: FadeAnimation(
-                          1.3,Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                color: Colors.blue.shade100
-                            ),
-                            margin: EdgeInsets.all(10),
-                            alignment: Alignment.center,
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Icon(Icons.delete_sharp,
-                                    color: Colors.black,
-                                    size: SizeConfig.height! * 5,),
-                                ),
-                                Expanded(
-                                    flex: 3,
-                                    child: Container(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text("Delete Services",style: Theme.of(context).textTheme.subtitle2!.merge(TextStyle(fontSize: SizeConfig.height! * 3,color: Colors.black)),))),
-                              ],
                             ),
                           ),
                         ),
@@ -160,38 +135,7 @@ class _adminhomeState extends State<adminhome> {
                       Expanded(
                         child: GestureDetector(
                           onTap: (){
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => addsubservice()));
-                          },
-                          child: FadeAnimation(
-                            1.5,Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                color: Colors.blue.shade100
-                            ),
-                            margin: EdgeInsets.all(10),
-                            alignment: Alignment.center,
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Icon(Icons.home_repair_service_outlined,
-                                    color: Colors.black,
-                                    size: SizeConfig.height! * 5,),
-                                ),
-                                Expanded(
-                                    flex: 3,
-                                    child: Container(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text("Update Sub Services",style: Theme.of(context).textTheme.subtitle2!.merge(TextStyle(fontSize: SizeConfig.height! * 3,color: Colors.black)),))),
-                              ],
-                            ),
-                          ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: (){
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => addsubservice()));
+                           Navigator.of(context).push(MaterialPageRoute(builder: (context) => deletesubservice()));
                           },
                           child: FadeAnimation(
                             1.6,Container(

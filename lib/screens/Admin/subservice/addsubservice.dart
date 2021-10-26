@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:home_service/Animation/animation.dart';
-import 'package:home_service/screens/Admin/service/add_services.dart';
-import 'package:home_service/screens/Admin/service/add_subservices.dart';
+import 'package:home_service/screens/Admin/service_providers/add_subservices.dart';
 import 'package:home_service/sizeconfig.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -31,14 +30,14 @@ class _addsubserviceState extends State<addsubservice> {
   Future<void> _pickImage() async {
     XFile? selected = (await _picker.pickImage(source: ImageSource.gallery));
     File sle = File(selected!.path);
-    context.read<add_services>().set_imagefile(sle);
-    print((Provider.of<add_services>(context, listen: false).imageFile)
+    context.read<add_subservices>().set_imagefile(sle);
+    print((Provider.of<add_subservices>(context, listen: false).imageFile)
         .toString());
   }
 
   Future<void> uploadFile() async {
     File? _imageFile =
-        Provider.of<add_services>(context, listen: false).imageFile;
+        Provider.of<add_subservices>(context, listen: false).imageFile;
     print(_imageFile);
     String filename = _imageFile!.path.split('/').last;
     print(filename);
@@ -47,7 +46,7 @@ class _addsubserviceState extends State<addsubservice> {
     final UploadTask uploadtask = storageref.putFile(_imageFile);
     final TaskSnapshot downloadurl = await uploadtask;
     final String url = await downloadurl.ref.getDownloadURL();
-    context.read<add_services>().set_image(url);
+    context.read<add_subservices>().set_image(url);
   }
 
   Future<void> _alertDialogBox(String error) async {
@@ -79,14 +78,18 @@ class _addsubserviceState extends State<addsubservice> {
   @override
   void initState() {
     // TODO: implement initState
+    setState(() {
+      Provider.of<add_subservices>(context, listen: false).fetch_service_list();
+    });
     super.initState();
-    Provider.of<add_subservices>(context, listen: false).fetch_service_list();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text("Add Sub Services"),
+        title: Text("Add Sub Services",style: Theme.of(context).textTheme.subtitle2,),
         elevation: 0,
       ),
       body: SingleChildScrollView(

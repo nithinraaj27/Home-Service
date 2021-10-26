@@ -5,8 +5,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:home_service/screens/Admin/Admin_main.dart';
-import 'package:home_service/screens/Admin/service/add_services.dart';
-import 'package:home_service/screens/Admin/service/add_subservices.dart';
+import 'package:home_service/screens/Admin/service_providers/add_services.dart';
+import 'package:home_service/screens/Admin/service_providers/add_subservices.dart';
+import 'package:home_service/screens/Admin/service_providers/delete_service.dart';
+import 'package:home_service/screens/Admin/service_providers/delete_subservice.dart';
 import 'package:home_service/screens/main.dart';
 import 'package:home_service/screens/Main_Page/signin.dart';
 import 'package:home_service/service/get_services.dart';
@@ -148,10 +150,11 @@ class helperthree extends StatelessWidget {
 
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<user_details>.value(value: (user_details())),
         ChangeNotifierProvider<get_services>.value(value: (get_services())),
         ChangeNotifierProvider<add_services>.value(value: (add_services())),
         ChangeNotifierProvider<add_subservices>.value(value: (add_subservices())),
+        ChangeNotifierProvider<delete_subservice>.value(value: (delete_subservice())),
+        ChangeNotifierProvider<delete_mainService>.value(value: (delete_mainService())),
       ],
       child: Consumer<AppStateNotifier>(builder: (context, appState, child) {
         return MaterialApp(

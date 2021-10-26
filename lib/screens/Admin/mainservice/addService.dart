@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:home_service/Animation/animation.dart';
-import 'package:home_service/screens/Admin/service/add_services.dart';
+import 'package:home_service/screens/Admin/service_providers/add_services.dart';
 import 'package:home_service/service/user_details.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -34,8 +34,7 @@ class _addServiceState extends State<addService> {
     XFile? selected = (await _picker.pickImage(source: ImageSource.gallery));
     File sle = File(selected!.path);
     context.read<add_services>().set_imagefile(sle);
-    print((Provider.of<add_services>(context, listen: false).imageFile)
-        .toString());
+    print((Provider.of<add_services>(context, listen: false).imageFile).toString());
   }
 
   Future<void> uploadFile() async {

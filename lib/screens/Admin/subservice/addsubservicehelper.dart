@@ -4,7 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:home_service/Animation/animation.dart';
-import 'package:home_service/screens/Admin/service/add_subservices.dart';
+import 'package:home_service/screens/Admin/service_providers/add_subservices.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
