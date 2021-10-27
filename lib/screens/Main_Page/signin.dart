@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:home_service/Animation/animation.dart';
+import 'package:home_service/screens/Main_Page/forgetpassword.dart';
 import 'package:home_service/screens/Main_Page/mobilesignin.dart';
 import 'package:home_service/screens/Main_Page/signup.dart';
 import 'package:home_service/service/googlesignin.dart';
@@ -349,7 +350,7 @@ class _signinState extends State<signin> {
                                   ),
                                   Expanded(
                                     child: Container(
-                                        alignment: Alignment.centerLeft,
+                                        alignment: Alignment.center,
                                         child: InkWell(
                                             onTap: (){
                                               Navigator.of(context).push(MaterialPageRoute(builder: (context) => signup()));
@@ -361,7 +362,11 @@ class _signinState extends State<signin> {
                             ),
                             SizedBox(height: SizeConfig.height! * 1,),
                             Expanded(
-                                child: Text("Forgot password?",style: Theme.of(context).textTheme.headline3!.merge(TextStyle(color: Colors.black54)),)
+                                child: GestureDetector(
+                                    onTap: (){
+                                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>forgetpassword()));
+                                    },
+                                    child: Text("Forgot password?",style: Theme.of(context).textTheme.headline3!.merge(TextStyle(color: Colors.black54)),))
                             )
                           ],
                         ),

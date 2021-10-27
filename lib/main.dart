@@ -1,14 +1,7 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:home_service/screens/Admin/Admin_main.dart';
-import 'package:home_service/screens/Admin/service_providers/add_services.dart';
-import 'package:home_service/screens/Admin/service_providers/add_subservices.dart';
-import 'package:home_service/screens/Admin/service_providers/delete_service.dart';
-import 'package:home_service/screens/Admin/service_providers/delete_subservice.dart';
 import 'package:home_service/screens/main.dart';
 import 'package:home_service/screens/Main_Page/signin.dart';
 import 'package:home_service/service/get_services.dart';
@@ -143,30 +136,6 @@ class helpertwo extends StatelessWidget {
 }
 
 
-class helperthree extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    SizeConfig.init(context);
-
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<get_services>.value(value: (get_services())),
-        ChangeNotifierProvider<add_services>.value(value: (add_services())),
-        ChangeNotifierProvider<add_subservices>.value(value: (add_subservices())),
-        ChangeNotifierProvider<delete_subservice>.value(value: (delete_subservice())),
-        ChangeNotifierProvider<delete_mainService>.value(value: (delete_mainService())),
-      ],
-      child: Consumer<AppStateNotifier>(builder: (context, appState, child) {
-        return MaterialApp(
-          home: adminMain(),
-          debugShowCheckedModeBanner: false,
-          theme: AppTheme.theme,
-        );
-      }),
-    );
-  }
-}
-
 class userfinder extends StatefulWidget {
 
   @override
@@ -198,6 +167,6 @@ class _userfinderState extends State<userfinder> {
 
   @override
   Widget build(BuildContext context) {
-    return (role == 'admin')? helperthree() : helpertwo();
+    return (role == 'user')?  helpertwo() : helperone();
   }
 }

@@ -16,7 +16,6 @@ class service_provider extends StatefulWidget {
 class _service_providerState extends State<service_provider> {
   bool _autovalidate = false;
   var services_list = [];
-  String _initial = "Select Services";
   @override
   void initState() {
     // TODO: implement initState

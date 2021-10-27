@@ -6,7 +6,7 @@ class get_services with ChangeNotifier {
   var _services = ['Select Services'];
   String _selected_service = "Select Services";
 
-  var _sub_services = ['select Categories', ""];
+  var _sub_services = ['Select Categories'];
   String _selected_catogories = "Select Categories";
 
   String _selected_Service_docId = "";

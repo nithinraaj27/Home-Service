@@ -6,8 +6,8 @@ import 'package:home_service/Animation/animation.dart';
 import 'package:home_service/main.dart';
 
 
-import '../sizeconfig.dart';
-import 'Main_Page/signin.dart';
+import '../../sizeconfig.dart';
+import 'signin.dart';
 
 class forgetpassword extends StatefulWidget {
   const forgetpassword({Key? key}) : super(key: key);

@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:home_service/Animation/animation.dart';
 import 'package:home_service/sizeconfig.dart';
 
-import '../../forgetpassword.dart';
+import '../../Main_Page/forgetpassword.dart';
 
 
 

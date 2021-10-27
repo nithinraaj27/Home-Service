@@ -27,7 +27,7 @@ class _HomeColumnState extends State<HomeColumn> {
           child: FadeAnimation(
             1,
             Text(
-              "Which service_providers do you need?",
+              "What Service do you need?",
               style: Theme.of(context).textTheme.headline3!.copyWith(
                     fontSize: SizeConfig.height! * 3.7,
                     fontWeight: FontWeight.bold,
