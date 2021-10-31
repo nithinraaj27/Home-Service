@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:home_service/Animation/animation.dart';
 import 'package:home_service/screens/Profile_Page/Options/about.dart';
 import 'package:home_service/screens/Profile_Page/Options/rate.dart';
-import 'package:home_service/screens/Profile_Page/Options/Service_Provider/register_service_provider.dart';
 import 'package:home_service/screens/Profile_Page/Options/saved.dart';
 import 'package:home_service/screens/Profile_Page/Options/scheduled_booking.dart';
 import 'package:home_service/screens/Profile_Page/Options/settings.dart';
@@ -16,6 +15,7 @@ import 'package:home_service/sizeconfig.dart';
 import 'package:provider/provider.dart';
 
 import 'Edit Profile/edit_profile.dart';
+import 'Options/service_provider.dart';
 
 
 

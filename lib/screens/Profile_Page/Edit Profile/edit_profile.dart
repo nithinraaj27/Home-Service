@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:home_service/Animation/animation.dart';
-import 'package:home_service/screens/Profile_Page/Edit%20Profile/change_password.dart';
+import 'package:home_service/screens/Main_Page/forgetpassword.dart';
 import 'package:home_service/service/user_details.dart';
 import 'package:home_service/sizeconfig.dart';
 import 'package:provider/provider.dart';
@@ -261,7 +261,7 @@ class _edit_profileState extends State<edit_profile> {
                     alignment: Alignment.topCenter,
                     child: GestureDetector(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>change_password()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>forgetpassword()));
                       },
                       child: Text("Change Password ??",style: GoogleFonts.poppins(
                         fontSize: SizeConfig.height! * 2,
