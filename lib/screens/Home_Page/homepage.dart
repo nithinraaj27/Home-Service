@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
       return ServiceCards(
         name: doc['name'] ?? '',
         image: doc['image'] ?? '',
+        uid: doc['uid'] ?? '',
       );
     }).toList();
   }

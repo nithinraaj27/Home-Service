@@ -4,11 +4,11 @@ import 'package:home_service/screens/Home_Page/subServices.dart';
 
 import '../../sizeconfig.dart';
 
-class ServiceCards extends StatelessWidget {
+class SubServiceCards extends StatelessWidget {
   final String image;
   final String name;
   final String uid;
-  const ServiceCards({
+  const SubServiceCards({
     Key? key,
     required this.image,
     required this.name,
@@ -23,10 +23,7 @@ class ServiceCards extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => SubServices(
-              uid: uid,
-              name: name,
-            ),
+            builder: (context) => Container(),
           ),
         );
       },
