@@ -15,12 +15,10 @@ class SubServices extends StatefulWidget {
       : super(key: key);
 
   @override
-  _SubServicesState createState() => _SubServicesState(uid: uid);
+  _SubServicesState createState() => _SubServicesState();
 }
 
 class _SubServicesState extends State<SubServices> {
-  String uid;
-  _SubServicesState({required this.uid});
   final CollectionReference serviceCollection =
       FirebaseFirestore.instance.collection('services');
 
@@ -30,6 +28,8 @@ class _SubServicesState extends State<SubServices> {
         name: doc['name'] ?? '',
         image: doc['image'] ?? '',
         uid: doc['name'] ?? '',
+        mainuid: widget.uid,
+        mainname: widget.name,
       );
     }).toList();
   }

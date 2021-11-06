@@ -17,7 +17,6 @@ class ServiceCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color _color = Colors.grey[200]!;
-    print("UID IS HERE : " + uid);
     return GestureDetector(
       onTap: () {
         Navigator.push(

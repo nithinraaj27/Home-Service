@@ -17,7 +17,7 @@ class _SubHomeColumnState extends State<SubHomeColumn> {
     final List<SubServiceCards> service_detail =
         Provider.of<List<SubServiceCards>>(context);
 
-    print(service_detail);
+    print("HELLO" + service_detail.toString());
     return Column(
       children: <Widget>[
         SizedBox(

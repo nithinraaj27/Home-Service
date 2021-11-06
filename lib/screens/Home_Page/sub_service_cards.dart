@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_service/Animation/animation.dart';
+import 'package:home_service/screens/Home_Page/service_providers.dart';
 import 'package:home_service/screens/Home_Page/subServices.dart';
 
 import '../../sizeconfig.dart';
@@ -8,22 +9,26 @@ class SubServiceCards extends StatelessWidget {
   final String image;
   final String name;
   final String uid;
+  final String mainuid;
+  final String mainname;
   const SubServiceCards({
     Key? key,
     required this.image,
     required this.name,
     required this.uid,
+    required this.mainuid,
+    required this.mainname,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     Color _color = Colors.grey[200]!;
-    print("UID IS HERE : " + uid);
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Container(),
+            builder: (context) => ServiceProviders(
+                mainuid: mainuid, mainname: mainname, uid: uid, name: name),
           ),
         );
       },
