@@ -1,5 +1,5 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:home_service/screens/Home_Page/serviceProviderProfile.dart';
 import 'package:home_service/sizeconfig.dart';
 
 class ServiceProvidersCard extends StatelessWidget {
@@ -29,45 +29,63 @@ class ServiceProvidersCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: SizeConfig.height! * 100,
+      color: Colors.grey[100],
+      height: SizeConfig.height! * 12,
       width: SizeConfig.width! * 110,
-      child: Column(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Expanded(
-            child: GestureDetector(
-              onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => serviceProviderProfile(
-                  name: name,
-                  email: mail,
-                  expirence: experience,
-                  image: image,
-                  qualification: qualification,
-                  mobile: mobile,
-                  desc: description,
-                  status: status,
-                  service: service, block: '', location: '', subservice: '', id: '',
-                )));
-              },
-              child: Text(
-                "Service Providers List",
-                style: Theme.of(context).textTheme.headline3!.copyWith(
-                  fontSize: SizeConfig.height! * 3.7,
-                  fontWeight: FontWeight.bold,
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
+            child: Column(
+              children: [
+                CircleAvatar(
+                  backgroundImage: NetworkImage(
+                    image,
+                  ),
+                  radius: 30.0,
                 ),
-              ),
+                Text(
+                  status,
+                  style: Theme.of(context).textTheme.headline3!.copyWith(
+                        fontSize: SizeConfig.height! * 1.7,
+                        fontWeight: FontWeight.bold,
+                        color: status == "Open" ? Colors.green : Colors.red,
+                      ),
+                ),
+              ],
             ),
           ),
-          SizedBox(height: SizeConfig.height! * 2),
-          Expanded(
-            flex: 9,
-            child: ListTile(
-              leading: CircleAvatar(
-                radius: SizeConfig.width! * 12,
-                backgroundImage: NetworkImage(image),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                name,
+                style: Theme.of(context).textTheme.headline3!.copyWith(
+                    fontSize: SizeConfig.height! * 2.7,
+                    fontWeight: FontWeight.bold),
               ),
-              title: Text(name,
-                style: Theme.of(context).textTheme.headline1),
-              subtitle: Text(mail,style: Theme.of(context).textTheme.headline3),
+              Text(
+                mail,
+                style: Theme.of(context).textTheme.headline3!.copyWith(
+                      fontSize: SizeConfig.height! * 1.5,
+                    ),
+              ),
+              Text(
+                mobile,
+                style: Theme.of(context).textTheme.headline3!.copyWith(
+                      fontSize: SizeConfig.height! * 1.5,
+                    ),
+              ),
+            ],
+          ),
+          TextButton(
+            onPressed: () {},
+            child: Text(
+              "Add + ",
+              style: Theme.of(context).textTheme.headline3!.copyWith(
+                  fontSize: SizeConfig.height! * 1.7, color: Colors.lightBlue),
             ),
           )
         ],
