@@ -44,6 +44,8 @@ class _ServiceProvidersState extends State<ServiceProviders> {
         qualification: doc['qualification'] ?? '',
         description: doc['description'] ?? '',
         mail: doc['mail'] ?? '',
+        subService: doc['Service'] ?? '',
+        location: doc['location'] ?? '',
       );
     }).toList();
   }
