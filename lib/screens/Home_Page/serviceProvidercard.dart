@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:home_service/screens/Home_Page/seviceProviderFullDetail.dart';
 import 'package:home_service/sizeconfig.dart';
 
-class ServiceProvidersCard extends StatelessWidget {
+class ServiceProvidersCard extends StatefulWidget {
   final String name;
   final String image;
   final String mobile;
@@ -32,6 +33,11 @@ class ServiceProvidersCard extends StatelessWidget {
       : super(key: key);
 
   @override
+  _ServiceProvidersCardState createState() => _ServiceProvidersCardState();
+}
+
+class _ServiceProvidersCardState extends State<ServiceProvidersCard> {
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
@@ -39,15 +45,17 @@ class ServiceProvidersCard extends StatelessWidget {
           context,
           MaterialPageRoute(
               builder: (context) => FullDetails(
-                    name: name,
-                    image: image,
-                    mobile: mobile,
-                    service: service,
-                    status: status,
-                    experience: experience,
-                    description: description,
-                    mail: mail,
-                    qualification: qualification,
+                    name: widget.name,
+                    image: widget.image,
+                    mobile: widget.mobile,
+                    service: widget.service,
+                    status: widget.status,
+                    experience: widget.experience,
+                    description: widget.description,
+                    mail: widget.mail,
+                    qualification: widget.qualification,
+                    subService: widget.subService,
+                    location: widget.location,
                   )),
         );
       },
@@ -65,16 +73,18 @@ class ServiceProvidersCard extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     backgroundImage: NetworkImage(
-                      image,
+                      widget.image,
                     ),
                     radius: 30.0,
                   ),
                   Text(
-                    status,
+                    widget.status,
                     style: Theme.of(context).textTheme.headline3!.copyWith(
                           fontSize: SizeConfig.height! * 1.7,
                           fontWeight: FontWeight.bold,
-                          color: status == "Open" ? Colors.green : Colors.red,
+                          color: widget.status == "Open"
+                              ? Colors.green
+                              : Colors.red,
                         ),
                   ),
                 ],
@@ -84,19 +94,19 @@ class ServiceProvidersCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  name,
+                  widget.name,
                   style: Theme.of(context).textTheme.headline3!.copyWith(
                       fontSize: SizeConfig.height! * 2.7,
                       fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  mail,
+                  widget.mail,
                   style: Theme.of(context).textTheme.headline3!.copyWith(
                         fontSize: SizeConfig.height! * 1.5,
                       ),
                 ),
                 Text(
-                  mobile,
+                  widget.mobile,
                   style: Theme.of(context).textTheme.headline3!.copyWith(
                         fontSize: SizeConfig.height! * 1.5,
                       ),
@@ -107,7 +117,9 @@ class ServiceProvidersCard extends StatelessWidget {
               children: [
                 IconButton(
                   icon: Icon(Icons.phone_outlined),
-                  onPressed: () {},
+                  onPressed: () async {
+                    FlutterPhoneDirectCaller.callNumber(widget.mobile);
+                  },
                 ),
                 TextButton(
                   onPressed: () {},

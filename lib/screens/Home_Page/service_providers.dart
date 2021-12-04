@@ -44,7 +44,7 @@ class _ServiceProvidersState extends State<ServiceProviders> {
         qualification: doc['qualification'] ?? '',
         description: doc['description'] ?? '',
         mail: doc['mail'] ?? '',
-        subService: doc['Service'] ?? '',
+        subService: doc['subService'] ?? '',
         location: doc['location'] ?? '',
       );
     }).toList();
@@ -62,11 +62,7 @@ class _ServiceProvidersState extends State<ServiceProviders> {
 
   @override
   Widget build(BuildContext context) {
-    print("MAIN PRINT PLACE : " +
-        widget.mainuid +
-        widget.mainname +
-        widget.uid +
-        widget.name);
+    print("MAIN PRINT PLACE : " + widget.uid);
     return StreamProvider<List<ServiceProvidersCard>>.value(
       value: sub_service_getter,
       initialData: [],

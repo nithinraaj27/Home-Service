@@ -18,6 +18,8 @@ class _ServiceProviderColumnState extends State<ServiceProviderColumn> {
         Provider.of<List<ServiceProvidersCard>>(context);
 
     print("SERVICE DETAIL : " + service_detail.toString());
+
+    //print("First Service: " + service_detail[0].toString());
     return Column(
       children: <Widget>[
         SizedBox(

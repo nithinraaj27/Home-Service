@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
 import '../../sizeconfig.dart';
 
@@ -15,6 +16,8 @@ class FullDetails extends StatefulWidget {
   final String description;
   final String mail;
   final String qualification;
+  final String subService;
+  final String location;
 
   const FullDetails(
       {Key? key,
@@ -26,7 +29,9 @@ class FullDetails extends StatefulWidget {
       required this.experience,
       required this.description,
       required this.mail,
-      required this.qualification})
+      required this.qualification,
+      required this.subService,
+      required this.location})
       : super(key: key);
 
   @override
@@ -38,10 +43,14 @@ class _FullDetailsState extends State<FullDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor:
-          widget.status == "Open" ? Colors.green.shade50 : Colors.red.shade50,
+          widget.status == "Open" ? Colors.green.shade100 : Colors.red.shade100,
       appBar: AppBar(
-        backgroundColor:
-            widget.status == "Open" ? Colors.green.shade50 : Colors.red.shade50,
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
+        ),
+        backgroundColor: widget.status == "Open"
+            ? Colors.green.shade100
+            : Colors.red.shade100,
         elevation: 0.0,
         centerTitle: true,
         title: Text(
@@ -53,10 +62,9 @@ class _FullDetailsState extends State<FullDetails> {
         ),
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 150.0),
+            padding: const EdgeInsets.only(top: 30.0),
             child: CircleAvatar(
               radius: SizeConfig.height! * 10,
               child: Image.network(
@@ -102,12 +110,39 @@ class _FullDetailsState extends State<FullDetails> {
                   ),
             ),
           ),
+          SizedBox(
+            height: 50.0,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30.0),
+            child: Text(
+              "Location : " + widget.location,
+              textAlign: TextAlign.start,
+              style: Theme.of(context).textTheme.headline3!.copyWith(
+                    fontSize: SizeConfig.height! * 1.7,
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30.0),
+            child: Text(
+              "subService : " + widget.subService,
+              textAlign: TextAlign.start,
+              style: Theme.of(context).textTheme.headline3!.copyWith(
+                    fontSize: SizeConfig.height! * 1.7,
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () async {
+          FlutterPhoneDirectCaller.callNumber(widget.mobile);
+        },
         child: Icon(Icons.local_phone_outlined),
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: Colors.green[900],
       ),
     );
   }
