@@ -24,9 +24,7 @@ class _HomeColumnState extends State<HomeColumn> {
         ),
         Expanded(
           flex: 1,
-          child: FadeAnimation(
-            1,
-            Text(
+          child: Text(
               "What Service do you need?",
               style: Theme.of(context).textTheme.headline3!.copyWith(
                     fontSize: SizeConfig.height! * 3.7,
@@ -34,7 +32,6 @@ class _HomeColumnState extends State<HomeColumn> {
                   ),
             ),
           ),
-        ),
         SizedBox(
           height: SizeConfig.height! * 2,
         ),

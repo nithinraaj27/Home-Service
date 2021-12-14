@@ -25,17 +25,32 @@ class _SubHomeColumnState extends State<SubHomeColumn> {
         ),
         Expanded(
           flex: 1,
-          child: FadeAnimation(
-            1,
-            Text(
-              "What Service do you need?",
-              style: Theme.of(context).textTheme.headline3!.copyWith(
+          child:Row(
+            children: [
+              Expanded(
+                child: GestureDetector(
+                    onTap: (){
+                      Navigator.of(context).pop();
+                    },
+                    child: Icon(
+                      Icons.chevron_left,
+                      color: Color(0xff23ADE8),
+                      size: SizeConfig.height! * 5,
+                    )),
+              ),
+              Expanded(
+                flex: 3,
+                child: Text(
+                  "What Service do you need?",
+                  style: Theme.of(context).textTheme.headline3!.copyWith(
                     fontSize: SizeConfig.height! * 3.7,
                     fontWeight: FontWeight.bold,
                   ),
-            ),
+                ),
+              ),
+            ],
           ),
-        ),
+          ),
         SizedBox(
           height: SizeConfig.height! * 2,
         ),

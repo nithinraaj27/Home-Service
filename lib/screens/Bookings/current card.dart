@@ -187,6 +187,16 @@ class _current_cardState extends State<current_card> {
                                       .doc(widget.DocId)
                                       .delete();
                                 })
+                                .whenComplete(() async {
+                                  await FirebaseFirestore.instance
+                                      .collection("Service Providers")
+                                      .doc(widget.id)
+                                      .collection("orders")
+                                      .doc("Requested")
+                                      .collection("orders")
+                                      .doc(widget.DocId)
+                                      .delete();
+                                })
                                 .whenComplete(
                                     () => _alertBox("Order Cancelled"))
                                 .whenComplete(() => Navigator.of(context).push(

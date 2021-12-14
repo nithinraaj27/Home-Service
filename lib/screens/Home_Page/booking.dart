@@ -97,20 +97,23 @@ class _bookingState extends State<booking> {
         String id,
         String mail,
         String loc) async {
+      String s = DateTime.now().toString();
       await FirebaseFirestore.instance
           .collection("Service Providers")
           .doc(id)
           .collection("orders")
           .doc("Requested")
-          .collection(DateTime.now().toString())
-          .add({
+          .collection("orders")
+          .doc(s)
+          .set({
         "ID": FirebaseAuth.instance.currentUser!.uid,
         "Name": name,
         "Mobile": mobile,
         "Email": mail,
         "Date": DateFormat("yyyy-MM-dd").format(date),
         "Time": tym,
-        "location": loc
+        "location": loc,
+        "DocId": s,
       });
     }
 
@@ -157,7 +160,7 @@ class _bookingState extends State<booking> {
                                 location
                               )));
                       Navigator.pop(context);
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=> mainPage()));
+                      //Navigator.of(context).push(MaterialPageRoute(builder: (context)=> mainPage()));
                     },
                     child: Text(
                       "Confirm",
