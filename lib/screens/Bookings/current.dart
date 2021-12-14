@@ -44,6 +44,8 @@ class _currentState extends State<current> {
                         date: document["Date"],
                         time: document["Time"],
                         image: document["Image"],
+                        DocId: document["DocId"],
+                        status: document["status"],
                       ),
                     );
                   }).toList(),

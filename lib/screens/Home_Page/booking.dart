@@ -6,9 +6,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:home_service/Animation/animation.dart';
 import 'package:home_service/screens/Bookings/bookings.dart';
 import 'package:home_service/screens/Home_Page/homepage.dart';
+import 'package:home_service/screens/main.dart';
 import 'package:home_service/sizeconfig.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
+
+import '../../main.dart';
 
 class booking extends StatefulWidget {
   final String name;
@@ -63,13 +66,14 @@ class _bookingState extends State<booking> {
 
     Future<void> addtoservice(DateTime date, String tym, String service,
         String subservice, String name, String mobile, String id, String image) async {
+      String s = DateTime.now().toString();
       await FirebaseFirestore.instance
           .collection("userdetails")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .collection("orders")
           .doc("current")
           .collection("orders")
-          .doc(DateTime.now().toString())
+          .doc(s)
           .set({
         "ID": id,
         "Name": name,
@@ -79,7 +83,8 @@ class _bookingState extends State<booking> {
         "Date": DateFormat("yyyy-MM-dd").format(date),
         "Time": tym,
         "Image": image,
-        "DocId": DateTime.now().toString(),
+        "DocId": s,
+        "status" : "Requested",
       });
     }
 
@@ -96,7 +101,7 @@ class _bookingState extends State<booking> {
           .collection("Service Providers")
           .doc(id)
           .collection("orders")
-          .doc("current")
+          .doc("Requested")
           .collection(DateTime.now().toString())
           .add({
         "ID": FirebaseAuth.instance.currentUser!.uid,
@@ -148,7 +153,8 @@ class _bookingState extends State<booking> {
                                   userMobile,
                                   widget.id,
                                   userMail)));
-                      Navigator.of(context).pop();
+                      Navigator.pop(context);
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=> mainPage()));
                     },
                     child: Text(
                       "Confirm",

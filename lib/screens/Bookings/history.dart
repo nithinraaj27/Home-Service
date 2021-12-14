@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:home_service/screens/Bookings/historyfulldetails.dart';
 
 import '../../sizeconfig.dart';
 import 'current card.dart';
@@ -43,7 +44,7 @@ class _historyState extends State<history> {
                         padding: EdgeInsets.symmetric(
                             vertical: SizeConfig.width! * 2,
                             horizontal: SizeConfig.height! * 1.5),
-                        child: current_card(
+                        child: historyfulldetails(
                           name: document["Name"],
                           id: document["ID"],
                           mobile: document["Mobile"],
@@ -52,6 +53,8 @@ class _historyState extends State<history> {
                           date: document["Date"],
                           time: document["Time"],
                           image: document["Image"],
+                          status: document["status"],
+                          DocId: document["DocId"],
                         ),
                       );
                     }).toList(),

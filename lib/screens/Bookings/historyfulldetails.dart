@@ -2,10 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:home_service/screens/Bookings/history.dart';
+import 'package:home_service/screens/Home_Page/booking.dart';
 import 'package:home_service/screens/Home_Page/homepage.dart';
-import 'package:home_service/sizeconfig.dart';
 
-class current_card extends StatefulWidget {
+import '../../sizeconfig.dart';
+
+class historyfulldetails extends StatefulWidget {
   final String name;
   final String service;
   final String subservice;
@@ -17,7 +20,7 @@ class current_card extends StatefulWidget {
   final String status;
   final String DocId;
 
-  const current_card(
+  const historyfulldetails(
       {Key? key,
       required this.name,
       required this.service,
@@ -32,10 +35,10 @@ class current_card extends StatefulWidget {
       : super(key: key);
 
   @override
-  _current_cardState createState() => _current_cardState();
+  _historyfulldetailsState createState() => _historyfulldetailsState();
 }
 
-class _current_cardState extends State<current_card> {
+class _historyfulldetailsState extends State<historyfulldetails> {
   bool saved = false;
 
   Future<void> _alertBox(String error) async {
@@ -161,41 +164,23 @@ class _current_cardState extends State<current_card> {
                                 .collection("userdetails")
                                 .doc(FirebaseAuth.instance.currentUser!.uid)
                                 .collection("orders")
-                                .doc('history')
-                                .collection('orders')
+                                .doc("history")
+                                .collection("orders")
                                 .doc(widget.DocId)
-                                .set({
-                                  "Date": widget.date,
-                                  "ID": widget.id,
-                                  "Image": widget.image,
-                                  "Mobile": widget.mobile,
-                                  "Name": widget.name,
-                                  "Service": widget.service,
-                                  "Sub-Service": widget.subservice,
-                                  "Time": widget.time,
-                                  "status": "Cancelled",
-                                  "DocId": widget.DocId,
-                                })
-                                .whenComplete(() async {
-                                  await FirebaseFirestore.instance
-                                      .collection("userdetails")
-                                      .doc(FirebaseAuth
-                                          .instance.currentUser!.uid)
-                                      .collection("orders")
-                                      .doc("current")
-                                      .collection("orders")
-                                      .doc(widget.DocId)
-                                      .delete();
-                                })
-                                .whenComplete(
-                                    () => _alertBox("Order Cancelled"))
-                                .whenComplete(() => Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                        builder: (context) => HomePage())));
+                                .delete().whenComplete(() => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => booking(
+                                        service: widget.service,
+                                        subservice: widget.subservice,
+                                        name: widget.name,
+                                        mobile: widget.mobile,
+                                        id: widget.id,
+                                        image: widget.image))));
                           },
                           child: Icon(
-                            Icons.cancel,
-                            color: Colors.red,
+                            Icons.add_box,
+                            color: Colors.green,
                             size: SizeConfig.height! * 3.5,
                           )),
                     )),

@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:home_service/screens/Home_Page/homepage.dart';
 
 import '../../../sizeconfig.dart';
 
@@ -116,7 +117,7 @@ class _savedFullDetailsState extends State<savedFullDetails> {
                       .doc(FirebaseAuth.instance.currentUser!.uid)
                       .collection("Saved")
                       .doc(widget.uid)
-                      .delete().whenComplete(() => _alertBox("Removed from Saved")).whenComplete(() => Navigator.of(context).pop());
+                      .delete().whenComplete(() => _alertBox("Removed from Saved")).whenComplete(() => Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage())));
                 },
                 child: Icon(
                   saved
