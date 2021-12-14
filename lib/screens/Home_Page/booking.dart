@@ -3,9 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:home_service/Animation/animation.dart';
-import 'package:home_service/screens/Bookings/bookings.dart';
-import 'package:home_service/screens/Home_Page/homepage.dart';
 import 'package:home_service/screens/main.dart';
 import 'package:home_service/sizeconfig.dart';
 import 'package:intl/intl.dart';
@@ -42,6 +39,7 @@ class _bookingState extends State<booking> {
   String userName = "";
   String userMobile = "";
   String userMail = "";
+  String location = "";
 
   CalendarFormat format = CalendarFormat.month;
 
@@ -58,6 +56,7 @@ class _bookingState extends State<booking> {
               userName = element['Name'];
               userMobile = element['Mobile'];
               userMail = element['E-mail'];
+              location = element['location'];
             });
           }
         });
@@ -96,7 +95,8 @@ class _bookingState extends State<booking> {
         String name,
         String mobile,
         String id,
-        String mail) async {
+        String mail,
+        String loc) async {
       await FirebaseFirestore.instance
           .collection("Service Providers")
           .doc(id)
@@ -109,7 +109,8 @@ class _bookingState extends State<booking> {
         "Mobile": mobile,
         "Email": mail,
         "Date": DateFormat("yyyy-MM-dd").format(date),
-        "Time": tym
+        "Time": tym,
+        "location": loc
       });
     }
 
@@ -152,7 +153,9 @@ class _bookingState extends State<booking> {
                                   userName,
                                   userMobile,
                                   widget.id,
-                                  userMail)));
+                                  userMail,
+                                location
+                              )));
                       Navigator.pop(context);
                       Navigator.of(context).push(MaterialPageRoute(builder: (context)=> mainPage()));
                     },

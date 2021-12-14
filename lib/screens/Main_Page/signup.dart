@@ -51,6 +51,7 @@ class _signupState extends State<signup> {
         "Mobile": number,
         "Password": password,
         "Role" : "user",
+        "location" : location
       };
       FirebaseFirestore.instance
           .collection("userdetails")
