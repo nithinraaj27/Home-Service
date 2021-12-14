@@ -43,6 +43,7 @@ dependencies:
   pinput: ^0.2.6
   image_picker:
   flutter_phone_direct_caller: ^2.1.0
+  table_calendar:
 
 dev_dependencies:
   flutter_test:

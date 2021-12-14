@@ -1,6 +1,8 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:home_service/Animation/animation.dart';
 import 'package:home_service/screens/Bookings/bookings.dart';
@@ -29,58 +31,83 @@ class _mainPageState extends State<mainPage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      bottomNavigationBar: NavbarAnim(
-        1,
-        ClipRRect(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(55),
-            topRight: Radius.circular(55),
-          ),
-          child: new BottomNavigationBar(
-              backgroundColor: Color(0xff23ADE8),
-              selectedItemColor: Colors.white,
-              type: BottomNavigationBarType.fixed,
-              currentIndex: _selectedPage,
-              unselectedItemColor: Colors.white.withOpacity(0.6),
-              onTap: (val) {
-                setState(() {
-                  _selectedPage = val;
-                });
-              },
-              items: [
-                BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.home,
-                      size: SizeConfig.height! * 3.5,
+          bottomNavigationBar: CupertinoTabScaffold(
+              resizeToAvoidBottomInset: false,
+              tabBar: CupertinoTabBar(
+                backgroundColor: Color(0xff23ADE8),
+                activeColor: Colors.white,
+                inactiveColor: Colors.black54,
+                items:  <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(
+                      icon: Padding(
+                        padding: EdgeInsets.only(bottom: 4),
+                        child: Icon(
+                          Icons.home,
+                          size: SizeConfig.height! * 3.5,
+                        ),
+                      ),
+                      title: Text("Home",style: GoogleFonts.poppins(fontSize: SizeConfig.height! * 1.5,fontWeight: FontWeight.w500),),
+                      ),
+                  BottomNavigationBarItem(
+                    icon: Padding(
+                      padding: EdgeInsets.only(bottom: 5),
+                      child: FaIcon(
+                        Icons.how_to_reg_rounded,
+                        size: SizeConfig.height! * 3.5,
+                      ),
                     ),
-                    title: Text(
-                      "Home",
-                      style: TextStyle(
-                          fontSize: SizeConfig.height! * 2,
-                          fontWeight: FontWeight.w400),
-                    )),
-                BottomNavigationBarItem(
-                    icon: FaIcon(Icons.how_to_reg_rounded,
-                        size: SizeConfig.height! * 3.5),
-                    title: Text(
-                      "Booking",
-                      style: TextStyle(
-                          fontSize: SizeConfig.height! * 2,
-                          fontWeight: FontWeight.w400),
-                    )),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.person, size: SizeConfig.height! * 3.5),
-                  title: Text(
-                    "Profile",
-                    style: TextStyle(
-                        fontSize: SizeConfig.height! * 2,
-                        fontWeight: FontWeight.w400),
+                    title: Text("Bookings",style: GoogleFonts.poppins(fontSize: SizeConfig.height! * 1.5,fontWeight: FontWeight.w500),),
                   ),
-                ),
-              ]),
-        ),
-      ),
-      body: _tabs[_selectedPage],
+                  BottomNavigationBarItem(
+                      icon: Padding(
+                        padding: EdgeInsets.only(bottom: 4),
+                        child: Icon(
+                          Icons.person,
+                          size: SizeConfig.height! * 3.5,
+                        ),
+                      ),
+                    title: Text("Profile",style: GoogleFonts.poppins(fontSize: SizeConfig.height! * 1.5,fontWeight: FontWeight.w500),),
+                  ),
+                ],
+              ),
+              tabBuilder: (context,index){
+                switch(index)
+                {
+                  case 0:
+                    return CupertinoTabView(
+                      builder: (context){
+                        return CupertinoPageScaffold(
+                          child: HomePage(),
+                        );
+                      },
+                    );
+
+                  case 1:
+                    return CupertinoTabView(
+                      builder: (context){
+                        return CupertinoPageScaffold(
+                          child: bookings(),
+                        );
+                      },
+                    );
+
+                  case 2:
+                    return CupertinoTabView(
+                      builder: (context){
+                        return CupertinoPageScaffold(
+                          child: profile(),
+                        );
+                      },
+                    );
+
+                  default: return CupertinoTabView(builder: (context){
+                    return CupertinoPageScaffold(
+                      child: HomePage(),
+                    );
+                  },);
+                }
+              }
+          ),
     ));
   }
 }

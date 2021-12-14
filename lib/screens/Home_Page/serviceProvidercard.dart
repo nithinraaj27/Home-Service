@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:home_service/screens/Home_Page/booking.dart';
 import 'package:home_service/screens/Home_Page/seviceProviderFullDetail.dart';
 import 'package:home_service/sizeconfig.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class ServiceProvidersCard extends StatefulWidget {
+
+  final String uid;
   final String name;
   final String image;
   final String mobile;
@@ -29,7 +33,7 @@ class ServiceProvidersCard extends StatefulWidget {
       required this.mail,
       required this.qualification,
       required this.subService,
-      required this.location})
+      required this.location, required this.uid})
       : super(key: key);
 
   @override
@@ -37,6 +41,33 @@ class ServiceProvidersCard extends StatefulWidget {
 }
 
 class _ServiceProvidersCardState extends State<ServiceProvidersCard> {
+
+  Future<void> _alertDialogBox(String error) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: Container(
+              child: Text(
+                error,
+                style: TextStyle(
+                    color: Colors.black54, fontSize: SizeConfig.height! * 2),
+              ),
+            ),
+            actions: [
+              FlatButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    "Close",
+                    style: TextStyle(color: Colors.blue),
+                  )),
+            ],
+          );
+        });
+  }
+  
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -55,7 +86,7 @@ class _ServiceProvidersCardState extends State<ServiceProvidersCard> {
                     mail: widget.mail,
                     qualification: widget.qualification,
                     subService: widget.subService,
-                    location: widget.location,
+                    location: widget.location, uid: widget.uid,
                   )),
         );
       },
@@ -122,7 +153,13 @@ class _ServiceProvidersCardState extends State<ServiceProvidersCard> {
                   },
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    widget.status == "Open"? Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => booking(service: widget.service,subservice: widget.subService, mobile: widget.mobile, name: widget.name, id: widget.uid,image: widget.image,))):
+                    _alertDialogBox("Service Not Available,Try Again Later");
+                  },
                   child: Text(
                     "Add + ",
                     style: Theme.of(context).textTheme.headline3!.copyWith(

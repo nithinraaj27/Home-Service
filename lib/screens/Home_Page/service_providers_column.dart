@@ -20,34 +20,53 @@ class _ServiceProviderColumnState extends State<ServiceProviderColumn> {
     print("SERVICE DETAIL : " + service_detail.toString());
 
     //print("First Service: " + service_detail[0].toString());
-    return Column(
-      children: <Widget>[
-        SizedBox(
-          height: SizeConfig.height! * 2,
-        ),
-        FadeAnimation(
-          1,
-          Text(
-            "Service Providers List!",
-            style: Theme.of(context).textTheme.headline3!.copyWith(
-                  fontSize: SizeConfig.height! * 3.7,
-                  fontWeight: FontWeight.bold,
+    return SafeArea(
+      child: Column(
+        children: <Widget>[
+          SizedBox(
+            height: SizeConfig.height! * 2,
+          ),
+          FadeAnimation(
+            1,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                GestureDetector(
+                  onTap: (){
+                    Navigator.of(context).pop();
+                  },
+                    child: Icon(
+                  Icons.chevron_left,
+                  color: Color(0xff23ADE8),
+                  size: SizeConfig.height! * 5,
+                )),
+                Text(
+                  "Service Providers List!",
+                  style: Theme.of(context).textTheme.headline3!.copyWith(
+                        fontSize: SizeConfig.height! * 3.2,
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
+              ],
+            ),
           ),
-        ),
-        Expanded(
-          flex: 5,
-          child: ListView(
-            physics: ScrollPhysics(),
-            children: List.generate(service_detail.length, (index) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: FadeAnimation(1, service_detail[index]),
-              );
-            }),
+          SizedBox(
+            height: SizeConfig.height! * 2,
           ),
-        ),
-      ],
+          Expanded(
+            flex: 5,
+            child: ListView(
+              physics: ScrollPhysics(),
+              children: List.generate(service_detail.length, (index) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: FadeAnimation(1, service_detail[index]),
+                );
+              }),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

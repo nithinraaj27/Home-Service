@@ -46,6 +46,7 @@ class _ServiceProvidersState extends State<ServiceProviders> {
         mail: doc['mail'] ?? '',
         subService: doc['subService'] ?? '',
         location: doc['location'] ?? '',
+        uid: doc.id,
       );
     }).toList();
   }
