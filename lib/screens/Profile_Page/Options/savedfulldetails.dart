@@ -1,14 +1,13 @@
-import 'dart:ui';
+
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
-import '../../sizeconfig.dart';
+import '../../../sizeconfig.dart';
 
-class FullDetails extends StatefulWidget {
+class savedFullDetails extends StatefulWidget {
   final String name;
   final String image;
   final String mobile;
@@ -22,7 +21,7 @@ class FullDetails extends StatefulWidget {
   final String location;
   final String uid;
 
-  const FullDetails(
+  const savedFullDetails(
       {Key? key,
       required this.name,
       required this.image,
@@ -39,40 +38,52 @@ class FullDetails extends StatefulWidget {
       : super(key: key);
 
   @override
-  _FullDetailsState createState() => _FullDetailsState();
+  _savedFullDetailsState createState() => _savedFullDetailsState();
 }
 
-class _FullDetailsState extends State<FullDetails> {
-  bool saved = false;
+class _savedFullDetailsState extends State<savedFullDetails> {
 
-  Future<void> _alertBox(String error) async {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            content: Container(
-              child: Text(
-                error,
-                style: TextStyle(
-                    color: Colors.black54, fontSize: SizeConfig.height! * 2),
-              ),
-            ),
-            actions: [
-              FlatButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    "Close",
-                    style: TextStyle(color: Colors.blue),
-                  )),
-            ],
-          );
-        });
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
+
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+
+    bool saved = true;
+
+    Future<void> _alertBox(String error) async {
+      return showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              content: Container(
+                child: Text(
+                  error,
+                  style: TextStyle(
+                      color: Colors.black54, fontSize: SizeConfig.height! * 2),
+                ),
+              ),
+              actions: [
+                FlatButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      "Close",
+                      style: TextStyle(color: Colors.blue),
+                    )),
+              ],
+            );
+          });
+    }
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -99,31 +110,13 @@ class _FullDetailsState extends State<FullDetails> {
                     }
                   });
                   saved
-                      ? await FirebaseFirestore.instance
-                          .collection("userdetails")
-                          .doc(FirebaseAuth.instance.currentUser!.uid)
-                          .collection("Saved")
-                          .doc(widget.uid)
-                          .set({
-                          "Name": widget.name,
-                          "Image": widget.image,
-                          "Mobile": widget.mobile,
-                          "service": widget.service,
-                          "experience": widget.experience,
-                          "Description": widget.description,
-                          "Mail": widget.mail,
-                          "Qualification": widget.qualification,
-                          "SubService": widget.subService,
-                          "location": widget.location,
-                          "Uid": widget.uid,
-                          "status": "Open",
-                        }).whenComplete(() => _alertBox("Saved Successfully"))
-                      : await FirebaseFirestore.instance
-                          .collection("userdetails")
-                          .doc(FirebaseAuth.instance.currentUser!.uid)
-                          .collection("Saved")
-                          .doc(widget.uid)
-                          .delete().whenComplete(() => _alertBox("Removed from Saved"));
+                      ? null :
+                      await FirebaseFirestore.instance
+                      .collection("userdetails")
+                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                      .collection("Saved")
+                      .doc(widget.uid)
+                      .delete().whenComplete(() => _alertBox("Removed from Saved")).whenComplete(() => Navigator.of(context).pop());
                 },
                 child: Icon(
                   saved
@@ -191,9 +184,9 @@ class _FullDetailsState extends State<FullDetails> {
                                             .textTheme
                                             .headline3!
                                             .copyWith(
-                                                fontSize:
-                                                    SizeConfig.height! * 1.5,
-                                                fontWeight: FontWeight.bold),
+                                            fontSize:
+                                            SizeConfig.height! * 1.5,
+                                            fontWeight: FontWeight.bold),
                                       ),
                                     ),
                                     SizedBox(
@@ -206,9 +199,9 @@ class _FullDetailsState extends State<FullDetails> {
                                             .textTheme
                                             .headline3!
                                             .copyWith(
-                                                fontSize:
-                                                    SizeConfig.height! * 1.4,
-                                                fontWeight: FontWeight.bold),
+                                            fontSize:
+                                            SizeConfig.height! * 1.4,
+                                            fontWeight: FontWeight.bold),
                                       ),
                                     )
                                   ],
@@ -251,8 +244,8 @@ class _FullDetailsState extends State<FullDetails> {
                                     .textTheme
                                     .headline3!
                                     .copyWith(
-                                      fontSize: SizeConfig.height! * 1.7,
-                                    ),
+                                  fontSize: SizeConfig.height! * 1.7,
+                                ),
                               ),
                             ),
                           ),
@@ -266,30 +259,30 @@ class _FullDetailsState extends State<FullDetails> {
             ),
             Expanded(
                 child: Column(
-              children: [
-                Text(
-                  "📍 "
+                  children: [
+                    Text(
+                      "📍 "
                           "Location : " +
-                      widget.location,
-                  textAlign: TextAlign.start,
-                  style: Theme.of(context).textTheme.headline3!.copyWith(
+                          widget.location,
+                      textAlign: TextAlign.start,
+                      style: Theme.of(context).textTheme.headline3!.copyWith(
                         fontSize: SizeConfig.height! * 1.7,
                         fontWeight: FontWeight.bold,
                       ),
-                ),
-                SizedBox(
-                  height: SizeConfig.height! * 1.5,
-                ),
-                Text(
-                  "⚒ " "subService : " + widget.subService,
-                  textAlign: TextAlign.start,
-                  style: Theme.of(context).textTheme.headline3!.copyWith(
+                    ),
+                    SizedBox(
+                      height: SizeConfig.height! * 1.5,
+                    ),
+                    Text(
+                      "⚒ " "subService : " + widget.subService,
+                      textAlign: TextAlign.start,
+                      style: Theme.of(context).textTheme.headline3!.copyWith(
                         fontSize: SizeConfig.height! * 1.7,
                         fontWeight: FontWeight.bold,
                       ),
-                ),
-              ],
-            )),
+                    ),
+                  ],
+                )),
           ],
         ),
         floatingActionButton: FloatingActionButton(

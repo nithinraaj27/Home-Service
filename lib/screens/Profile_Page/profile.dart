@@ -137,8 +137,8 @@ class _profileState extends State<profile> {
                         Icons.handyman_outlined,service_provider()),
                     Lists("About Company", Icons.info_outline,about()),
                     Lists("Share Company", Icons.share_outlined,share()),
-                    Lists("Scheduled Booking", Icons.bookmark_outline_outlined,schedules()),
-                    Lists("Saved Services", Icons.home_repair_service_outlined,saved()),
+                    Lists("Scheduled Booking", Icons.home_repair_service_outlined,schedules()),
+                    Lists("Saved Services", Icons.bookmark_outline_outlined,saved()),
                     Lists("Rate Company", Icons.star,rate()),
                     Lists("Settings", Icons.settings,settings()),
                     Expanded(

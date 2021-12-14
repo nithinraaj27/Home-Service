@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:home_service/screens/Bookings/current.dart';
 
 import '../../../sizeconfig.dart';
 
@@ -23,12 +24,7 @@ class _schedulesState extends State<schedules> {
                   fontSize: SizeConfig.height! * 2.5, fontWeight: FontWeight.w500),
             ),
           ),
-          body: Center(
-            child: Container(
-              alignment: Alignment.center,
-              child: Text("Scheduled Bookings"),
-            ),
-          ),
+          body: current()
         ));
   }
 }
