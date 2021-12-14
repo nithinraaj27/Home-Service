@@ -78,7 +78,8 @@ class _bookingState extends State<booking> {
         "Sub-Service": subservice,
         "Date": DateFormat("yyyy-MM-dd").format(date),
         "Time": tym,
-        "Image": image
+        "Image": image,
+        "DocId": DateTime.now().toString(),
       });
     }
 
