@@ -101,7 +101,7 @@ class _historyfulldetailsState extends State<historyfulldetails> {
                                 ? Colors.red
                                 : widget.status == "Completed"
                                 ? Colors.green
-                                : Colors.yellow.shade700,
+                                : Colors.red,
                             fontSize: SizeConfig.height! * 1.8,
                           fontWeight: FontWeight.w800
                         ),
