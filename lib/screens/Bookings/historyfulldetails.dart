@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:home_service/screens/Bookings/history.dart';
 import 'package:home_service/screens/Home_Page/booking.dart';
 import 'package:home_service/screens/Home_Page/homepage.dart';
@@ -79,15 +80,39 @@ class _historyfulldetailsState extends State<historyfulldetails> {
         child: Row(
           children: [
             Expanded(
-              child: Container(
-                child: CircleAvatar(
-                  radius: 45,
-                  backgroundImage: NetworkImage(widget.image),
-                ),
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      child: CircleAvatar(
+                        radius: 35,
+                        backgroundImage: NetworkImage(widget.image),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Text(
+                        widget.status,
+                        style: GoogleFonts.poppins(
+                            color: widget.status == "Cancelled"
+                                ? Colors.red
+                                : widget.status == "Completed"
+                                ? Colors.green
+                                : Colors.yellow.shade700,
+                            fontSize: SizeConfig.height! * 1.8,
+                          fontWeight: FontWeight.w800
+                        ),
+                      ),
+                    ),
+                  )
+                ],
               ),
             ),
             SizedBox(
-              width: SizeConfig.width! * 1,
+              width: SizeConfig.width! * 2,
             ),
             Expanded(
               flex: 2,
@@ -152,8 +177,8 @@ class _historyfulldetailsState extends State<historyfulldetails> {
                           },
                           child: Icon(
                             Icons.call,
-                            color: Colors.green,
-                            size: SizeConfig.height! * 3.5,
+                            color: Colors.blue,
+                            size: SizeConfig.height! * 2.5,
                           )),
                     )),
                     Expanded(
@@ -167,21 +192,41 @@ class _historyfulldetailsState extends State<historyfulldetails> {
                                 .doc("history")
                                 .collection("orders")
                                 .doc(widget.DocId)
-                                .delete().whenComplete(() => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => booking(
-                                        service: widget.service,
-                                        subservice: widget.subservice,
-                                        name: widget.name,
-                                        mobile: widget.mobile,
-                                        id: widget.id,
-                                        image: widget.image))));
+                                .delete()
+                                .whenComplete(() => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => booking(
+                                            service: widget.service,
+                                            subservice: widget.subservice,
+                                            name: widget.name,
+                                            mobile: widget.mobile,
+                                            id: widget.id,
+                                            image: widget.image))));
                           },
                           child: Icon(
                             Icons.add_box,
                             color: Colors.green,
-                            size: SizeConfig.height! * 3.5,
+                            size: SizeConfig.height! * 2.5,
+                          )),
+                    )),
+                    Expanded(
+                        child: Container(
+                      child: InkWell(
+                          onTap: () async {
+                            await FirebaseFirestore.instance
+                                .collection("userdetails")
+                                .doc(FirebaseAuth.instance.currentUser!.uid)
+                                .collection("orders")
+                                .doc("history")
+                                .collection("orders")
+                                .doc(widget.DocId)
+                                .delete().whenComplete(() => _alertBox("Deleted from history"));
+                          },
+                          child: Icon(
+                            Icons.cancel,
+                            color: Colors.red,
+                            size: SizeConfig.height! * 2.5,
                           )),
                     )),
                   ],

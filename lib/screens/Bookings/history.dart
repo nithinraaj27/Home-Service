@@ -61,7 +61,6 @@ class _historyState extends State<history> {
                   ),
                 ));
           }
-
           return Scaffold(
             body: Center(
               child: CircularProgressIndicator(),

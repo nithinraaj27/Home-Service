@@ -12,6 +12,8 @@ class current extends StatefulWidget {
 }
 
 class _currentState extends State<current> {
+
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<QuerySnapshot>(
