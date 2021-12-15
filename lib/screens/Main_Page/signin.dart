@@ -350,12 +350,12 @@ class _signinState extends State<signin> {
                                   ),
                                   Expanded(
                                     child: Container(
-                                        alignment: Alignment.center,
+                                        alignment: Alignment.centerLeft,
                                         child: InkWell(
                                             onTap: (){
                                               Navigator.of(context).push(MaterialPageRoute(builder: (context) => signup()));
                                             },
-                                            child: Text("   SignUp",style: Theme.of(context).textTheme.headline3!.merge(TextStyle(color: Colors.blue))))),
+                                            child: Text(" SignUp",style: Theme.of(context).textTheme.headline3!.merge(TextStyle(color: Colors.blue))))),
                                   ),
                                 ],
                               ),

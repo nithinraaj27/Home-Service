@@ -95,7 +95,7 @@ class _edit_profileState extends State<edit_profile> {
       body: SingleChildScrollView(
         child: FadeAnimation(
           1, Container(
-            height: SizeConfig.height!*55,
+            height: SizeConfig.height!*60,
             margin: EdgeInsets.symmetric(vertical: SizeConfig.height!*4),
             child: Form(
               key: _formKey,
@@ -180,6 +180,52 @@ class _edit_profileState extends State<edit_profile> {
                                 hintText: context.watch<user_details>().Mobile,
                                 errorMaxLines: 1,
                                 prefixIcon: Icon(Icons.phone_android,size: SizeConfig.height! * 3,),
+                                contentPadding: EdgeInsets.symmetric(
+                                    vertical: 15, horizontal: 20),
+                                hintStyle: GoogleFonts.poppins(
+                                    fontSize: SizeConfig.height! * 2.3,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.grey),
+                                border: InputBorder.none
+                            ),
+                            style: GoogleFonts.poppins(
+                                fontSize: SizeConfig.height! * 2,
+                                color: Colors.black),
+                          ),
+                        ),
+                      )
+                  ),
+                  Expanded(
+                      child: Container(
+                        padding:EdgeInsets.symmetric(horizontal: SizeConfig.width! * 6),
+                        height: SizeConfig.height! * 4,
+                        alignment: Alignment.center,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(width: 0.5,color: Colors.grey.shade500),
+                              borderRadius: BorderRadius.circular(10)
+                          ),
+                          child: TextFormField(
+                            onChanged: (val) {
+                              if(val.isEmpty || val == ""){
+                                context.read<user_details>().update_email(new_email) as String;
+                              }
+                              else{
+                                context.read<user_details>().update_email(val) as String;
+                              }
+                            },
+                            validator: (value) {
+                              if (value!.isEmpty || value == "") {
+                                return "Email should not be left empty";
+                              }
+                              return null;
+                            },
+                            autovalidate: _autovalidate,
+                            decoration:
+                            InputDecoration(
+                                hintText: context.watch<user_details>().Email,
+                                errorMaxLines: 1,
+                                prefixIcon: Icon(Icons.mail,size: SizeConfig.height! * 3,),
                                 contentPadding: EdgeInsets.symmetric(
                                     vertical: 15, horizontal: 20),
                                 hintStyle: GoogleFonts.poppins(

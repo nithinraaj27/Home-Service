@@ -33,7 +33,9 @@ class _currentState extends State<current> {
               alignment: Alignment.center,
               child: Padding(
                 padding: EdgeInsets.only(top: SizeConfig.height! * 1),
-                child: ListView(
+                   child: snapshot.data!.docs.isEmpty ?  Center(
+                  child: Text("Currently no bookings has been scheduled"),
+            ) : ListView(
                   children: snapshot.data!.docs.map((document){
                     return Padding(
                       padding: EdgeInsets.symmetric(vertical: SizeConfig.width! * 2,horizontal: SizeConfig.height! * 1.5),

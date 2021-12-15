@@ -148,7 +148,8 @@ class _signupState extends State<signup> {
                               Expanded(
                                 child: Container(
                                   child: CircleAvatar(
-                                    child: Icon(Icons.person,size: SizeConfig.height! * 3,),
+                                    backgroundColor: Colors.blue,
+                                    child: Icon(Icons.person,size: SizeConfig.height! * 3,color: Colors.white,),
                                   ),
                                 ),
                               ),

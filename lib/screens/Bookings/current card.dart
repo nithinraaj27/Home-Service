@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:home_service/screens/Home_Page/homepage.dart';
 import 'package:home_service/sizeconfig.dart';
 
@@ -77,30 +76,11 @@ class _current_cardState extends State<current_card> {
         child: Row(
           children: [
             Expanded(
-              child: Column(
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: Container(
-                      child: CircleAvatar(
-                        radius: 35,
-                        backgroundImage: NetworkImage(widget.image),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      child: Text(
-                        widget.status,
-                        style: GoogleFonts.poppins(
-                            color: widget.status == "Deneied"? Colors.red : widget.status == "Accepted" ? Colors.green : Colors.yellow.shade700,
-                            fontSize: SizeConfig.height! * 1.8,
-                          fontWeight: FontWeight.w800
-                        ),
-                      ),
-                    ),
-                  )
-                ],
+              child: Container(
+                child: CircleAvatar(
+                  radius: 45,
+                  backgroundImage: NetworkImage(widget.image),
+                ),
               ),
             ),
             SizedBox(

@@ -32,7 +32,6 @@ class booking extends StatefulWidget {
 }
 
 class _bookingState extends State<booking> {
-  String ss = "";
   String time = "";
   late DateTime selectedDay = DateTime.now();
   late DateTime focusedDay = DateTime.now();
@@ -67,14 +66,13 @@ class _bookingState extends State<booking> {
     Future<void> addtoservice(DateTime date, String tym, String service,
         String subservice, String name, String mobile, String id, String image) async {
       String s = DateTime.now().toString();
-      ss = s;
       await FirebaseFirestore.instance
           .collection("userdetails")
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .collection("orders")
           .doc("current")
           .collection("orders")
-          .doc(ss)
+          .doc(s)
           .set({
         "ID": id,
         "Name": name,
@@ -99,13 +97,14 @@ class _bookingState extends State<booking> {
         String id,
         String mail,
         String loc) async {
+      String s = DateTime.now().toString();
       await FirebaseFirestore.instance
           .collection("Service Providers")
           .doc(id)
           .collection("orders")
           .doc("Requested")
           .collection("orders")
-          .doc(ss)
+          .doc(s)
           .set({
         "ID": FirebaseAuth.instance.currentUser!.uid,
         "Name": name,
@@ -114,8 +113,7 @@ class _bookingState extends State<booking> {
         "Date": DateFormat("yyyy-MM-dd").format(date),
         "Time": tym,
         "location": loc,
-        "DocId": ss,
-        "status" : "Requested",
+        "DocId": s,
       });
     }
 
