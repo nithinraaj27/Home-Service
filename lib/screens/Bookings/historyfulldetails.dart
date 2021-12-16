@@ -182,6 +182,26 @@ class _historyfulldetailsState extends State<historyfulldetails> {
                             size: SizeConfig.height! * 2.5,
                           )),
                     )),
+
+                    Expanded(
+                        child: Container(
+                          child: InkWell(
+                              onTap: () async {
+                                await FirebaseFirestore.instance
+                                    .collection("userdetails")
+                                    .doc(FirebaseAuth.instance.currentUser!.uid)
+                                    .collection("orders")
+                                    .doc("history")
+                                    .collection("orders")
+                                    .doc(widget.DocId)
+                                    .delete().whenComplete(() => _alertBox("Deleted from history"));
+                              },
+                              child: Icon(
+                                Icons.delete,
+                                color: Colors.red,
+                                size: SizeConfig.height! * 2.5,
+                              )),
+                        )),
                     Expanded(
                         child: Container(
                       child: InkWell(
@@ -209,25 +229,6 @@ class _historyfulldetailsState extends State<historyfulldetails> {
                           child: Icon(
                             Icons.add_box,
                             color: Colors.green,
-                            size: SizeConfig.height! * 2.5,
-                          )),
-                    )),
-                    Expanded(
-                        child: Container(
-                      child: InkWell(
-                          onTap: () async {
-                            await FirebaseFirestore.instance
-                                .collection("userdetails")
-                                .doc(FirebaseAuth.instance.currentUser!.uid)
-                                .collection("orders")
-                                .doc("history")
-                                .collection("orders")
-                                .doc(widget.DocId)
-                                .delete().whenComplete(() => _alertBox("Deleted from history"));
-                          },
-                          child: Icon(
-                            Icons.cancel,
-                            color: Colors.red,
                             size: SizeConfig.height! * 2.5,
                           )),
                     )),

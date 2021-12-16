@@ -8,15 +8,18 @@ class user_details with ChangeNotifier{
   String _name = "";
   String _mobile = "";
   String _email = "";
+  String _location = "";
 
   String _updatedName = "";
   String _updatedMobile = "";
   String _updatedEmail = "";
+  String _updatedLoc = "";
 
 
   String get Name => _name;
   String get Mobile => _mobile;
   String get Email => _email;
+  String get Loc => _location;
 
   Future<void> set_data() async{
     await FirebaseFirestore.instance.collection("userdetails").doc(user!.uid).get().then((doc) =>
@@ -24,6 +27,7 @@ class user_details with ChangeNotifier{
       this._name = doc['Name'],
       this._mobile = doc['Mobile'],
       this._email = doc['E-mail'],
+      this._location = doc['location'],
     });
     notifyListeners();
   }
@@ -40,6 +44,9 @@ class user_details with ChangeNotifier{
     this._updatedEmail = a;
   }
 
+  Future<void> update_loc(String a) async{
+    this._updatedLoc = a;
+  }
 
 
   Future<String> update() async{

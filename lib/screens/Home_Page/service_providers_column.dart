@@ -24,12 +24,12 @@ class _ServiceProviderColumnState extends State<ServiceProviderColumn> {
       child: Column(
         children: <Widget>[
           SizedBox(
-            height: SizeConfig.height! * 2,
+            height: SizeConfig.height! * 1,
           ),
           FadeAnimation(
             1,
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 GestureDetector(
                   onTap: (){
@@ -38,14 +38,17 @@ class _ServiceProviderColumnState extends State<ServiceProviderColumn> {
                     child: Icon(
                   Icons.chevron_left,
                   color: Color(0xff23ADE8),
-                  size: SizeConfig.height! * 5,
+                  size: SizeConfig.height! * 4,
                 )),
-                Text(
-                  "Service Providers List!",
-                  style: Theme.of(context).textTheme.headline3!.copyWith(
-                        fontSize: SizeConfig.height! * 3.2,
-                        fontWeight: FontWeight.bold,
-                      ),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: SizeConfig.width!*3),
+                  child: Text(
+                    "Service Providers List!",
+                    style: Theme.of(context).textTheme.headline3!.copyWith(
+                          fontSize: SizeConfig.height! * 2.5,
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
                 ),
               ],
             ),

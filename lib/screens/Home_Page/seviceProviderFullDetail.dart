@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:home_service/main.dart';
+import 'package:home_service/screens/Profile_Page/profile.dart';
 
 import '../../sizeconfig.dart';
 
@@ -45,7 +47,7 @@ class FullDetails extends StatefulWidget {
 class _FullDetailsState extends State<FullDetails> {
   bool saved = false;
 
-  Future<void> _alertBox(String error) async {
+  Future<void> _alertBox(String error, Widget t) async {
     return showDialog(
         context: context,
         builder: (context) {
@@ -61,6 +63,7 @@ class _FullDetailsState extends State<FullDetails> {
               FlatButton(
                   onPressed: () {
                     Navigator.pop(context);
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => t));
                   },
                   child: Text(
                     "Close",
@@ -117,13 +120,13 @@ class _FullDetailsState extends State<FullDetails> {
                           "location": widget.location,
                           "Uid": widget.uid,
                           "status": "Open",
-                        }).whenComplete(() => _alertBox("Saved Successfully"))
+                        }).whenComplete(() => _alertBox("Saved Successfully", helpertwo()))
                       : await FirebaseFirestore.instance
                           .collection("userdetails")
                           .doc(FirebaseAuth.instance.currentUser!.uid)
                           .collection("Saved")
                           .doc(widget.uid)
-                          .delete().whenComplete(() => _alertBox("Removed from Saved"));
+                          .delete().whenComplete(() => _alertBox("Removed from Saved" , profile()));
                 },
                 child: Icon(
                   saved

@@ -38,7 +38,9 @@ class _historyState extends State<history> {
                 alignment: Alignment.center,
                 child: Padding(
                   padding: EdgeInsets.only(top: SizeConfig.height! * 1),
-                  child: ListView(
+                  child: snapshot.data!.docs.isEmpty ?  Center(
+                    child: Text("Currently no order history"),
+            ) :ListView(
                     children: snapshot.data!.docs.map((document) {
                       return Padding(
                         padding: EdgeInsets.symmetric(

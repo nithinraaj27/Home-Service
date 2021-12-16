@@ -21,6 +21,7 @@ class _edit_profileState extends State<edit_profile> {
   String new_email = "";
   String new_Mobile_Number = "";
   String new_Name = "";
+  String new_loc = "";
 
   bool _autovalidate = false;
 
@@ -254,24 +255,24 @@ class _edit_profileState extends State<edit_profile> {
                           child: TextFormField(
                             onChanged: (val) {
                               if(val.isEmpty || val == ""){
-                                context.read<user_details>().update_email(new_email) as String;
+                                context.read<user_details>().update_loc(new_loc) as String;
                               }
                               else{
-                                context.read<user_details>().update_email(val) as String;
+                                context.read<user_details>().update_loc(val) as String;
                               }
                             },
                             validator: (value) {
                               if (value!.isEmpty || value == "") {
-                                return "Email should not be left empty";
+                                return "Location should not be left empty";
                               }
                               return null;
                             },
                             autovalidate: _autovalidate,
                             decoration:
                             InputDecoration(
-                                hintText: context.watch<user_details>().Email,
+                                hintText: context.watch<user_details>().Loc,
                                 errorMaxLines: 1,
-                                prefixIcon: Icon(Icons.mail,size: SizeConfig.height! * 3,),
+                                prefixIcon: Icon(Icons.gps_fixed,size: SizeConfig.height! * 3,),
                                 contentPadding: EdgeInsets.symmetric(
                                     vertical: 15, horizontal: 20),
                                 hintStyle: GoogleFonts.poppins(

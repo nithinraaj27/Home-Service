@@ -20,11 +20,11 @@ class booking extends StatefulWidget {
 
   const booking(
       {Key? key,
-      required this.service,
-      required this.subservice,
-      required this.name,
-      required this.mobile,
-      required this.id,
+        required this.service,
+        required this.subservice,
+        required this.name,
+        required this.mobile,
+        required this.id,
         required this.image})
       : super(key: key);
   @override
@@ -148,28 +148,28 @@ class _bookingState extends State<booking> {
                 FlatButton(
                     onPressed: () {
                       addtoservice(
-                              selectedDay,
-                              time,
-                              widget.service,
-                              widget.subservice,
-                              widget.name,
-                              widget.mobile,
-                              widget.id,
-                        widget.image
+                          selectedDay,
+                          time,
+                          widget.service,
+                          widget.subservice,
+                          widget.name,
+                          widget.mobile,
+                          widget.id,
+                          widget.image
                       )
                           .whenComplete(() => fetch_details().whenComplete(() =>
-                              addtoserviceprovider(
-                                  date,
-                                  tym,
-                                  widget.service,
-                                  widget.subservice,
-                                  userName,
-                                  userMobile,
-                                  widget.id,
-                                  userMail,
-                                location,
-                                widget.image,
-                              )));
+                          addtoserviceprovider(
+                            date,
+                            tym,
+                            widget.service,
+                            widget.subservice,
+                            userName,
+                            userMobile,
+                            widget.id,
+                            userMail,
+                            location,
+                            widget.image,
+                          )));
                       Navigator.pop(context);
                       Navigator.of(context).push(MaterialPageRoute(builder: (context)=> helpertwo()));
                     },
@@ -239,7 +239,7 @@ class _bookingState extends State<booking> {
                   alignment: Alignment.topCenter,
                   child: Padding(
                     padding:
-                        EdgeInsets.symmetric(horizontal: SizeConfig.width! * 2),
+                    EdgeInsets.symmetric(horizontal: SizeConfig.width! * 2),
                     child: TableCalendar(
                       focusedDay: selectedDay,
                       firstDay: DateTime.utc(1990),
@@ -329,7 +329,7 @@ class _bookingState extends State<booking> {
                                             "08:00 AM",
                                             style: GoogleFonts.poppins(
                                                 fontSize:
-                                                    SizeConfig.height! * 2,
+                                                SizeConfig.height! * 2,
                                                 fontWeight: FontWeight.w500),
                                           )),
                                     ),
@@ -356,7 +356,7 @@ class _bookingState extends State<booking> {
                                             "10:00 AM",
                                             style: GoogleFonts.poppins(
                                                 fontSize:
-                                                    SizeConfig.height! * 2,
+                                                SizeConfig.height! * 2,
                                                 fontWeight: FontWeight.w500),
                                           )),
                                     ),
@@ -383,7 +383,7 @@ class _bookingState extends State<booking> {
                                             "12:00 PM",
                                             style: GoogleFonts.poppins(
                                                 fontSize:
-                                                    SizeConfig.height! * 2,
+                                                SizeConfig.height! * 2,
                                                 fontWeight: FontWeight.w500),
                                           )),
                                     ),
@@ -416,7 +416,7 @@ class _bookingState extends State<booking> {
                                             "02:00 PM",
                                             style: GoogleFonts.poppins(
                                                 fontSize:
-                                                    SizeConfig.height! * 2,
+                                                SizeConfig.height! * 2,
                                                 fontWeight: FontWeight.w500),
                                           )),
                                     ),
@@ -443,7 +443,7 @@ class _bookingState extends State<booking> {
                                             "04:00 PM",
                                             style: GoogleFonts.poppins(
                                                 fontSize:
-                                                    SizeConfig.height! * 2,
+                                                SizeConfig.height! * 2,
                                                 fontWeight: FontWeight.w500),
                                           )),
                                     ),
@@ -470,7 +470,7 @@ class _bookingState extends State<booking> {
                                             "06:00 PM",
                                             style: GoogleFonts.poppins(
                                                 fontSize:
-                                                    SizeConfig.height! * 2,
+                                                SizeConfig.height! * 2,
                                                 fontWeight: FontWeight.w500),
                                           )),
                                     ),

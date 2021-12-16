@@ -20,9 +20,6 @@ class _SubHomeColumnState extends State<SubHomeColumn> {
     print("HELLO" + service_detail.toString());
     return Column(
       children: <Widget>[
-        SizedBox(
-          height: SizeConfig.height! * 2,
-        ),
         Expanded(
           flex: 1,
           child:Row(
@@ -35,15 +32,15 @@ class _SubHomeColumnState extends State<SubHomeColumn> {
                     child: Icon(
                       Icons.chevron_left,
                       color: Color(0xff23ADE8),
-                      size: SizeConfig.height! * 5,
+                      size: SizeConfig.height! * 4,
                     )),
               ),
               Expanded(
-                flex: 3,
+                flex: 5,
                 child: Text(
                   "What Service do you need?",
                   style: Theme.of(context).textTheme.headline3!.copyWith(
-                    fontSize: SizeConfig.height! * 3.7,
+                    fontSize: SizeConfig.height! * 2.5,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -51,11 +48,8 @@ class _SubHomeColumnState extends State<SubHomeColumn> {
             ],
           ),
           ),
-        SizedBox(
-          height: SizeConfig.height! * 2,
-        ),
         Expanded(
-          flex: 5,
+          flex: 7,
           child: GridView.count(
             physics: ScrollPhysics(),
             crossAxisCount: 2,

@@ -27,16 +27,13 @@ class _HomeColumnState extends State<HomeColumn> {
           child: Text(
               "What Service do you need?",
               style: Theme.of(context).textTheme.headline3!.copyWith(
-                    fontSize: SizeConfig.height! * 3.7,
+                    fontSize: SizeConfig.height! * 3,
                     fontWeight: FontWeight.bold,
                   ),
             ),
           ),
-        SizedBox(
-          height: SizeConfig.height! * 2,
-        ),
         Expanded(
-          flex: 5,
+          flex: 8,
           child: GridView.count(
             physics: ScrollPhysics(),
             crossAxisCount: 2,
