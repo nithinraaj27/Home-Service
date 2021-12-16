@@ -99,7 +99,9 @@ class _bookingState extends State<booking> {
         String mobile,
         String id,
         String mail,
-        String loc) async {
+        String loc,
+        String image
+        ) async {
       await FirebaseFirestore.instance
           .collection("Service Providers")
           .doc(id)
@@ -116,8 +118,13 @@ class _bookingState extends State<booking> {
         "Time": tym,
         "location": loc,
         "DocId": ss,
-        "status" : "Requested"
+        "status" : "Requested",
+        "Service": service,
+        "SubService": subservice,
+        "Image" : image,
       });
+
+
     }
 
     Future<void> _alertDialogBox(DateTime date, String tym) async {
@@ -160,7 +167,8 @@ class _bookingState extends State<booking> {
                                   userMobile,
                                   widget.id,
                                   userMail,
-                                location
+                                location,
+                                widget.image,
                               )));
                       Navigator.pop(context);
                       Navigator.of(context).push(MaterialPageRoute(builder: (context)=> helpertwo()));

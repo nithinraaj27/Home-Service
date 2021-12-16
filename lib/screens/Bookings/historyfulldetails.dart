@@ -17,9 +17,9 @@ class historyfulldetails extends StatefulWidget {
   final String time;
   final String id;
   final String mobile;
-  final String image;
   final String status;
   final String DocId;
+  final String image;
 
   const historyfulldetails(
       {Key? key,
@@ -30,9 +30,9 @@ class historyfulldetails extends StatefulWidget {
       required this.time,
       required this.id,
       required this.mobile,
-      required this.image,
       required this.status,
-      required this.DocId})
+      required this.DocId,
+        required this.image})
       : super(key: key);
 
   @override
@@ -86,7 +86,8 @@ class _historyfulldetailsState extends State<historyfulldetails> {
                     flex: 3,
                     child: Container(
                       child: CircleAvatar(
-                        radius: 35,
+                        radius: 38,
+                        backgroundColor: Colors.white,
                         backgroundImage: NetworkImage(widget.image),
                       ),
                     ),
@@ -202,7 +203,8 @@ class _historyfulldetailsState extends State<historyfulldetails> {
                                             name: widget.name,
                                             mobile: widget.mobile,
                                             id: widget.id,
-                                            image: widget.image))));
+                                            image: widget.image,
+                                        ))));
                           },
                           child: Icon(
                             Icons.add_box,

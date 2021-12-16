@@ -96,7 +96,7 @@ class _current_cardState extends State<current_card> {
                         style: GoogleFonts.poppins(
                             color: widget.status == "Cancelled"
                                 ? Colors.red
-                                : widget.status == "Completed"
+                                : widget.status == "Accepted"
                                 ? Colors.green
                                 : Colors.yellow.shade700,
                             fontSize: SizeConfig.height! * 1.8,
@@ -196,7 +196,7 @@ class _current_cardState extends State<current_card> {
                                   "Mobile": widget.mobile,
                                   "Name": widget.name,
                                   "Service": widget.service,
-                                  "Sub-Service": widget.subservice,
+                                  "SubService": widget.subservice,
                                   "Time": widget.time,
                                   "status": "Cancelled",
                                   "DocId": widget.DocId,
