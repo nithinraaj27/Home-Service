@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:home_service/Animation/animation.dart';
-import 'package:home_service/screens/Home_Page/service_cards.dart';
 import 'package:home_service/screens/Home_Page/sub_service_cards.dart';
 import 'package:provider/provider.dart';
 
@@ -49,7 +47,7 @@ class _SubHomeColumnState extends State<SubHomeColumn> {
           ),
           ),
         Expanded(
-          flex: 7,
+          flex: 6,
           child: GridView.count(
             physics: ScrollPhysics(),
             crossAxisCount: 2,

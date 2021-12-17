@@ -43,7 +43,8 @@ class _savedState extends State<saved> {
                       alignment: Alignment.center,
                       child: Padding(
                         padding: EdgeInsets.only(top: SizeConfig.height! * 1),
-                        child: ListView(
+                        child: snapshot.data!.docs.isEmpty ? Center(child: Text("No Saved Service"),) :
+                        ListView(
                           children: snapshot.data!.docs.map((document){
                             return Padding(
                               padding: EdgeInsets.symmetric(vertical: SizeConfig.width! * 2,horizontal: SizeConfig.height! * 1.5),

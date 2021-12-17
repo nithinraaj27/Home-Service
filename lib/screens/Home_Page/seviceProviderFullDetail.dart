@@ -275,16 +275,20 @@ class _FullDetailsState extends State<FullDetails> {
             ),
             Expanded(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  "📍 "
-                          "Location : " +
-                      widget.location,
-                  textAlign: TextAlign.start,
-                  style: Theme.of(context).textTheme.headline3!.copyWith(
-                        fontSize: SizeConfig.height! * 1.7,
-                        fontWeight: FontWeight.bold,
-                      ),
+                Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "📍 "
+                            "Location : " +
+                        widget.location,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headline3!.copyWith(
+                          fontSize: SizeConfig.height! * 1.7,
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
                 ),
                 SizedBox(
                   height: SizeConfig.height! * 1.5,

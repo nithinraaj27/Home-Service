@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:home_service/screens/main.dart';
 import 'package:home_service/sizeconfig.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -304,188 +303,186 @@ class _bookingState extends State<booking> {
                     ),
                     Expanded(
                       flex: 2,
-                      child: Container(
-                        child: Column(
-                          children: [
-                            Expanded(
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                      margin: EdgeInsets.all(15),
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        color: time == "08:00 AM"
-                                            ? Colors.blue
-                                            : Colors.white,
-                                        borderRadius: BorderRadius.circular(10),
-                                        border: Border.all(
-                                            width: 1, color: Colors.blue),
-                                      ),
-                                      child: InkWell(
-                                          onTap: () {
-                                            setState(() {
-                                              time = "08:00 AM";
-                                            });
-                                          },
-                                          child: Text(
-                                            "08:00 AM",
-                                            style: GoogleFonts.poppins(
-                                                fontSize:
-                                                SizeConfig.height! * 2,
-                                                fontWeight: FontWeight.w500),
-                                          )),
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    margin: EdgeInsets.all(15),
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      color: time == "08:00 AM"
+                                          ? Colors.blue
+                                          : Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                          width: 1, color: Colors.blue),
                                     ),
+                                    child: InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            time = "08:00 AM";
+                                          });
+                                        },
+                                        child: Text(
+                                          "08:00 AM",
+                                          style: GoogleFonts.poppins(
+                                              fontSize:
+                                              SizeConfig.height! * 2,
+                                              fontWeight: FontWeight.w500),
+                                        )),
                                   ),
-                                  Expanded(
-                                    child: Container(
-                                      margin: EdgeInsets.all(15),
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        color: time == "10:00 AM"
-                                            ? Colors.blue
-                                            : Colors.white,
-                                        borderRadius: BorderRadius.circular(10),
-                                        border: Border.all(
-                                            width: 1, color: Colors.blue),
-                                      ),
-                                      child: InkWell(
-                                          onTap: () {
-                                            setState(() {
-                                              time = "10:00 AM";
-                                            });
-                                          },
-                                          child: Text(
-                                            "10:00 AM",
-                                            style: GoogleFonts.poppins(
-                                                fontSize:
-                                                SizeConfig.height! * 2,
-                                                fontWeight: FontWeight.w500),
-                                          )),
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    margin: EdgeInsets.all(15),
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      color: time == "10:00 AM"
+                                          ? Colors.blue
+                                          : Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                          width: 1, color: Colors.blue),
                                     ),
+                                    child: InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            time = "10:00 AM";
+                                          });
+                                        },
+                                        child: Text(
+                                          "10:00 AM",
+                                          style: GoogleFonts.poppins(
+                                              fontSize:
+                                              SizeConfig.height! * 2,
+                                              fontWeight: FontWeight.w500),
+                                        )),
                                   ),
-                                  Expanded(
-                                    child: Container(
-                                      margin: EdgeInsets.all(15),
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        color: time == "12:00 PM"
-                                            ? Colors.blue
-                                            : Colors.white,
-                                        borderRadius: BorderRadius.circular(10),
-                                        border: Border.all(
-                                            width: 1, color: Colors.blue),
-                                      ),
-                                      child: InkWell(
-                                          onTap: () {
-                                            setState(() {
-                                              time = "12:00 PM";
-                                            });
-                                          },
-                                          child: Text(
-                                            "12:00 PM",
-                                            style: GoogleFonts.poppins(
-                                                fontSize:
-                                                SizeConfig.height! * 2,
-                                                fontWeight: FontWeight.w500),
-                                          )),
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    margin: EdgeInsets.all(15),
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      color: time == "12:00 PM"
+                                          ? Colors.blue
+                                          : Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                          width: 1, color: Colors.blue),
                                     ),
+                                    child: InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            time = "12:00 PM";
+                                          });
+                                        },
+                                        child: Text(
+                                          "12:00 PM",
+                                          style: GoogleFonts.poppins(
+                                              fontSize:
+                                              SizeConfig.height! * 2,
+                                              fontWeight: FontWeight.w500),
+                                        )),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                            Expanded(
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                      margin: EdgeInsets.all(15),
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        color: time == "02:00 PM"
-                                            ? Colors.blue
-                                            : Colors.white,
-                                        borderRadius: BorderRadius.circular(10),
-                                        border: Border.all(
-                                            width: 1, color: Colors.blue),
-                                      ),
-                                      child: InkWell(
-                                          onTap: () {
-                                            setState(() {
-                                              time = "02:00 PM";
-                                            });
-                                          },
-                                          child: Text(
-                                            "02:00 PM",
-                                            style: GoogleFonts.poppins(
-                                                fontSize:
-                                                SizeConfig.height! * 2,
-                                                fontWeight: FontWeight.w500),
-                                          )),
+                          ),
+                          Expanded(
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    margin: EdgeInsets.all(15),
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      color: time == "02:00 PM"
+                                          ? Colors.blue
+                                          : Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                          width: 1, color: Colors.blue),
                                     ),
+                                    child: InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            time = "02:00 PM";
+                                          });
+                                        },
+                                        child: Text(
+                                          "02:00 PM",
+                                          style: GoogleFonts.poppins(
+                                              fontSize:
+                                              SizeConfig.height! * 2,
+                                              fontWeight: FontWeight.w500),
+                                        )),
                                   ),
-                                  Expanded(
-                                    child: Container(
-                                      margin: EdgeInsets.all(15),
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        color: time == "04:00 PM"
-                                            ? Colors.blue
-                                            : Colors.white,
-                                        borderRadius: BorderRadius.circular(10),
-                                        border: Border.all(
-                                            width: 1, color: Colors.blue),
-                                      ),
-                                      child: InkWell(
-                                          onTap: () {
-                                            setState(() {
-                                              time = "04:00 PM";
-                                            });
-                                          },
-                                          child: Text(
-                                            "04:00 PM",
-                                            style: GoogleFonts.poppins(
-                                                fontSize:
-                                                SizeConfig.height! * 2,
-                                                fontWeight: FontWeight.w500),
-                                          )),
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    margin: EdgeInsets.all(15),
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      color: time == "04:00 PM"
+                                          ? Colors.blue
+                                          : Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                          width: 1, color: Colors.blue),
                                     ),
+                                    child: InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            time = "04:00 PM";
+                                          });
+                                        },
+                                        child: Text(
+                                          "04:00 PM",
+                                          style: GoogleFonts.poppins(
+                                              fontSize:
+                                              SizeConfig.height! * 2,
+                                              fontWeight: FontWeight.w500),
+                                        )),
                                   ),
-                                  Expanded(
-                                    child: Container(
-                                      margin: EdgeInsets.all(15),
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        color: time == "06:00 PM"
-                                            ? Colors.blue
-                                            : Colors.white,
-                                        borderRadius: BorderRadius.circular(10),
-                                        border: Border.all(
-                                            width: 1, color: Colors.blue),
-                                      ),
-                                      child: InkWell(
-                                          onTap: () {
-                                            setState(() {
-                                              time = "06:00 PM";
-                                            });
-                                          },
-                                          child: Text(
-                                            "06:00 PM",
-                                            style: GoogleFonts.poppins(
-                                                fontSize:
-                                                SizeConfig.height! * 2,
-                                                fontWeight: FontWeight.w500),
-                                          )),
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    margin: EdgeInsets.all(15),
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      color: time == "06:00 PM"
+                                          ? Colors.blue
+                                          : Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                          width: 1, color: Colors.blue),
                                     ),
+                                    child: InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            time = "06:00 PM";
+                                          });
+                                        },
+                                        child: Text(
+                                          "06:00 PM",
+                                          style: GoogleFonts.poppins(
+                                              fontSize:
+                                              SizeConfig.height! * 2,
+                                              fontWeight: FontWeight.w500),
+                                        )),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                            SizedBox(
-                              height: SizeConfig.height! * 2,
-                            )
-                          ],
-                        ),
+                          ),
+                          SizedBox(
+                            height: SizeConfig.height! * 2,
+                          )
+                        ],
                       ),
                     ),
                   ],

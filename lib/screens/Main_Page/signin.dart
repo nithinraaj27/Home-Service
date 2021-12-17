@@ -341,6 +341,7 @@ class _signinState extends State<signin> {
                           children: [
                             Expanded(
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Expanded(
                                     flex: 2,

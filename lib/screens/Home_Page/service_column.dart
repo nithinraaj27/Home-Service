@@ -33,7 +33,7 @@ class _HomeColumnState extends State<HomeColumn> {
             ),
           ),
         Expanded(
-          flex: 8,
+          flex: 7,
           child: GridView.count(
             physics: ScrollPhysics(),
             crossAxisCount: 2,

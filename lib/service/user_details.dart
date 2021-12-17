@@ -25,27 +25,35 @@ class user_details with ChangeNotifier{
     await FirebaseFirestore.instance.collection("userdetails").doc(user!.uid).get().then((doc) =>
     {
       this._name = doc['Name'],
+      this._updatedName = doc['Name'],
       this._mobile = doc['Mobile'],
+      this._updatedMobile = doc['Mobile'],
       this._email = doc['E-mail'],
+      this._updatedEmail = doc['E-mail'],
       this._location = doc['location'],
+      this._updatedLoc = doc['location'],
     });
     notifyListeners();
   }
 
   Future<void> update_name(String a) async{
     this._updatedName = a;
+    notifyListeners();
   }
 
   Future<void> update_mobile(String a) async{
     this._updatedMobile = a;
+    notifyListeners();
   }
 
   Future<void> update_email(String a) async{
     this._updatedEmail = a;
+    notifyListeners();
   }
 
   Future<void> update_loc(String a) async{
     this._updatedLoc = a;
+    notifyListeners();
   }
 
 
@@ -54,6 +62,7 @@ class user_details with ChangeNotifier{
       "Name": this._updatedName,
       "Mobile": this._updatedMobile,
       "E-mail": this._updatedEmail,
+      "location" : this._updatedLoc,
     };
     FirebaseFirestore.instance
         .collection("userdetails")
@@ -65,6 +74,7 @@ class user_details with ChangeNotifier{
       this._name = doc['Name'],
       this._mobile = doc['Mobile'],
       this._email = doc['E-mail'],
+      this._location = doc['location'],
     });
 
     notifyListeners();
