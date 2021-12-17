@@ -1,14 +1,16 @@
 import 'dart:ui';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:home_service/main.dart';
+import 'package:home_service/screens/Bookings/bookings.dart';
 import 'package:home_service/screens/Profile_Page/profile.dart';
 
 import '../../sizeconfig.dart';
+import 'booking.dart';
 
 class FullDetails extends StatefulWidget {
   final String name;
@@ -63,7 +65,8 @@ class _FullDetailsState extends State<FullDetails> {
               FlatButton(
                   onPressed: () {
                     Navigator.pop(context);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => t));
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => t));
                   },
                   child: Text(
                     "Close",
@@ -120,13 +123,16 @@ class _FullDetailsState extends State<FullDetails> {
                           "location": widget.location,
                           "Uid": widget.uid,
                           "status": "Open",
-                        }).whenComplete(() => _alertBox("Saved Successfully", helpertwo()))
+                        }).whenComplete(() =>
+                              _alertBox("Saved Successfully", helpertwo()))
                       : await FirebaseFirestore.instance
                           .collection("userdetails")
                           .doc(FirebaseAuth.instance.currentUser!.uid)
                           .collection("Saved")
                           .doc(widget.uid)
-                          .delete().whenComplete(() => _alertBox("Removed from Saved" , profile()));
+                          .delete()
+                          .whenComplete(
+                              () => _alertBox("Removed from Saved", profile()));
                 },
                 child: Icon(
                   saved
@@ -142,7 +148,7 @@ class _FullDetailsState extends State<FullDetails> {
         body: Column(
           children: [
             Expanded(
-                flex: 2,
+                flex: 4,
                 child: Container(
                   alignment: Alignment.center,
                   child: Column(
@@ -293,6 +299,40 @@ class _FullDetailsState extends State<FullDetails> {
                 ),
               ],
             )),
+            Expanded(
+              child: Container(
+                alignment: Alignment.topCenter,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => booking(
+                              mobile: widget.mobile,
+                              id: widget.uid,
+                              name: widget.name,
+                              service: widget.service,
+                              image: widget.image,
+                              subservice: widget.subService,
+                            )));
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: SizeConfig.height! * 6,
+                    width: SizeConfig.width! * 45,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Color(0xff23ADE8),
+                    ),
+                    child: Text(
+                      "Book Now",
+                      style: GoogleFonts.poppins(
+                          fontSize: SizeConfig.height! * 2,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
         floatingActionButton: FloatingActionButton(

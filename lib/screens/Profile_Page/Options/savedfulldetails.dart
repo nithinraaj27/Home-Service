@@ -117,7 +117,7 @@ class _savedFullDetailsState extends State<savedFullDetails> {
                       .doc(FirebaseAuth.instance.currentUser!.uid)
                       .collection("Saved")
                       .doc(widget.uid)
-                      .delete().whenComplete(() => _alertBox("Removed from Saved")).whenComplete(() => Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage())));
+                      .delete().whenComplete(() => _alertBox("Removed from Saved").whenComplete(() => Navigator.of(context).pop()));
                 },
                 child: Icon(
                   saved

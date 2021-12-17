@@ -97,77 +97,106 @@ class _ServiceProvidersCardState extends State<ServiceProvidersCard> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
-              child: Column(
-                children: [
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(
-                      widget.image,
+            Expanded(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
+                child: Column(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: NetworkImage(
+                        widget.image,
+                      ),
+                      radius: 30.0,
                     ),
-                    radius: 30.0,
+                    Text(
+                      widget.status,
+                      style: Theme.of(context).textTheme.headline3!.copyWith(
+                            fontSize: SizeConfig.height! * 1.7,
+                            fontWeight: FontWeight.bold,
+                            color: widget.status == "Open"
+                                ? Colors.green
+                                : Colors.red,
+                          ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      alignment: Alignment.bottomLeft,
+                      child: Text(
+                        widget.name,
+                        style: Theme.of(context).textTheme.headline3!.copyWith(
+                            fontSize: SizeConfig.height! * 2.7,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
                   ),
-                  Text(
-                    widget.status,
-                    style: Theme.of(context).textTheme.headline3!.copyWith(
-                          fontSize: SizeConfig.height! * 1.7,
-                          fontWeight: FontWeight.bold,
-                          color: widget.status == "Open"
-                              ? Colors.green
-                              : Colors.red,
-                        ),
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        widget.mail,
+                        style: Theme.of(context).textTheme.headline3!.copyWith(
+                              fontSize: SizeConfig.height! * 1.5,
+                            ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        widget.mobile,
+                        style: Theme.of(context).textTheme.headline3!.copyWith(
+                              fontSize: SizeConfig.height! * 1.5,
+                            ),
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.name,
-                  style: Theme.of(context).textTheme.headline3!.copyWith(
-                      fontSize: SizeConfig.height! * 2.7,
-                      fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  widget.mail,
-                  style: Theme.of(context).textTheme.headline3!.copyWith(
-                        fontSize: SizeConfig.height! * 1.5,
+            Expanded(
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.bottomCenter,
+                      child: IconButton(
+                        icon: Icon(Icons.phone,color: Colors.blue,size: SizeConfig.height! * 3.6,),
+                        onPressed: () async {
+                          FlutterPhoneDirectCaller.callNumber(widget.mobile);
+                        },
                       ),
-                ),
-                Text(
-                  widget.mobile,
-                  style: Theme.of(context).textTheme.headline3!.copyWith(
-                        fontSize: SizeConfig.height! * 1.5,
-                      ),
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                IconButton(
-                  icon: Icon(Icons.phone_outlined),
-                  onPressed: () async {
-                    FlutterPhoneDirectCaller.callNumber(widget.mobile);
-                  },
-                ),
-                TextButton(
-                  onPressed: () {
-                    widget.status == "Open"? Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => booking(service: widget.service,subservice: widget.subService, mobile: widget.mobile, name: widget.name, id: widget.uid,image: widget.image,))):
-                    _alertDialogBox("Service Not Available,Try Again Later");
-                  },
-                  child: Text(
-                    "Add + ",
-                    style: Theme.of(context).textTheme.headline3!.copyWith(
-                        fontSize: SizeConfig.height! * 1.7,
-                        color: Colors.lightBlue),
+                    ),
                   ),
-                ),
-              ],
+                  Expanded(
+                    child: TextButton(
+                      onPressed: () {
+                        widget.status == "Open"? Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => booking(service: widget.service,subservice: widget.subService, mobile: widget.mobile, name: widget.name, id: widget.uid,image: widget.image,))):
+                        _alertDialogBox("Service Not Available,Try Again Later");
+                      },
+                      child: Icon(
+                        Icons.add,
+                        color: Colors.green,
+                        size: SizeConfig.height! * 3.5,
+                      )
+                    ),
+                  ),
+                ],
+              ),
             )
           ],
         ),

@@ -237,47 +237,50 @@ class _bookingState extends State<booking> {
                 flex: 4,
                 child: Container(
                   alignment: Alignment.topCenter,
-                  child: Padding(
-                    padding:
-                    EdgeInsets.symmetric(horizontal: SizeConfig.width! * 2),
-                    child: TableCalendar(
-                      focusedDay: selectedDay,
-                      firstDay: DateTime.utc(1990),
-                      lastDay: DateTime.utc(2050),
-                      calendarFormat: format,
-                      startingDayOfWeek: StartingDayOfWeek.sunday,
-                      onFormatChanged: (CalendarFormat _format) {
-                        setState(() {
-                          format = _format;
-                        });
-                      },
-                      onDaySelected: (DateTime selectDay, DateTime focusday) {
-                        setState(() {
-                          selectedDay = selectDay;
-                          focusedDay = focusday;
-                        });
-                      },
-                      calendarStyle: CalendarStyle(
-                          isTodayHighlighted: true,
-                          selectedDecoration: BoxDecoration(
-                              color: Colors.green, shape: BoxShape.circle),
-                          todayDecoration: BoxDecoration(
-                            color: Colors.blue,
-                            shape: BoxShape.circle,
-                          )),
-                      selectedDayPredicate: (DateTime date) {
-                        return isSameDay(selectedDay, date);
-                      },
-                      headerStyle: HeaderStyle(
-                          titleCentered: true,
-                          formatButtonVisible: true,
-                          formatButtonDecoration: BoxDecoration(
-                            color: Colors.blueGrey.shade100,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          headerPadding: EdgeInsets.symmetric(
-                            horizontal: SizeConfig.width! * 5,
-                          )),
+                  child: Expanded(
+                    child: Padding(
+                      padding:
+                      EdgeInsets.symmetric(horizontal: SizeConfig.width! * 2),
+                      child: TableCalendar(
+                        focusedDay: selectedDay,
+                        firstDay: DateTime.now(),
+                        lastDay: DateTime.utc(2050),
+                        calendarFormat: format,
+                        startingDayOfWeek: StartingDayOfWeek.sunday,
+                        onFormatChanged: (CalendarFormat _format) {
+                          setState(() {
+                            format = _format;
+                          });
+                        },
+                        onDaySelected: (DateTime selectDay, DateTime focusday) {
+                          setState(() {
+                            selectedDay = selectDay;
+                            focusedDay = focusday;
+                          });
+                        },
+                        calendarStyle: CalendarStyle(
+                            isTodayHighlighted: true,
+                            selectedDecoration: BoxDecoration(
+                                color: Colors.green, shape: BoxShape.circle),
+                            todayDecoration: BoxDecoration(
+                              color: Colors.blue,
+                              shape: BoxShape.circle,
+                            )),
+                        selectedDayPredicate: (DateTime date) {
+                          return isSameDay(selectedDay, date);
+                        },
+                        headerStyle: HeaderStyle(
+                            titleCentered: true,
+                            titleTextStyle: TextStyle(fontSize: SizeConfig.height! * 2),
+                            formatButtonVisible: true,
+                            formatButtonDecoration: BoxDecoration(
+                              color: Colors.blueGrey.shade100,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            headerPadding: EdgeInsets.symmetric(
+                              horizontal: SizeConfig.width! * 5,
+                            )),
+                      ),
                     ),
                   ),
                 ),
@@ -515,21 +518,17 @@ class _bookingState extends State<booking> {
                         ),
                       ),
                       Expanded(
-                        child: Container(
-                          margin: EdgeInsets.all(30),
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: InkWell(
-                            onTap: () {
-                              if (time.isEmpty) {
-                                _alertBox("Please select the Time slot");
-                              } else {
-                                _alertDialogBox(selectedDay, time);
-                              }
-                            },
+                        child: GestureDetector(
+                          onTap: (){
+                            time == "" ? _alertBox("Please Select the Time Slot") : _alertDialogBox(selectedDay, time);
+                          },
+                          child: Container(
+                            margin: EdgeInsets.all(30),
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
                             child: Text(
                               "Book",
                               style: GoogleFonts.poppins(
