@@ -15,11 +15,18 @@ class user_details with ChangeNotifier{
   String _updatedEmail = "";
   String _updatedLoc = "";
 
+  String _new_loc = "Location";
+
 
   String get Name => _name;
   String get Mobile => _mobile;
   String get Email => _email;
   String get Loc => _location;
+
+  String get New_Loc => _new_loc;
+
+  String get Update_Loc => _updatedLoc;
+
 
   Future<void> set_data() async{
     await FirebaseFirestore.instance.collection("userdetails").doc(user!.uid).get().then((doc) =>
@@ -53,6 +60,11 @@ class user_details with ChangeNotifier{
 
   Future<void> update_loc(String a) async{
     this._updatedLoc = a;
+    notifyListeners();
+  }
+
+  Future<void> set_new_loc(String a) async{
+    this._new_loc = a;
     notifyListeners();
   }
 

@@ -10,6 +10,13 @@ import 'package:home_service/sizeconfig.dart';
 import 'package:provider/provider.dart';
 
 
+import 'package:geocoding/geocoding.dart' as geo;
+import 'package:geolocator/geolocator.dart' as geolocator;
+import 'package:geolocator/geolocator.dart';
+import 'package:location_permissions/location_permissions.dart';
+import 'package:provider/provider.dart';
+
+
 class edit_profile extends StatefulWidget {
   const edit_profile({Key? key}) : super(key: key);
 
@@ -33,6 +40,50 @@ class _edit_profileState extends State<edit_profile> {
   final CollectionReference _collectionReference =
   FirebaseFirestore.instance.collection("userdetails");
 
+  String? Address = "";
+
+  Future<void> getCurrentLocation() async {
+    final PermissionStatus permission = await _getLocationPermission();
+    try{
+      if (permission == PermissionStatus.granted) {
+        Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high,
+          forceAndroidLocationManager: true,
+        );
+
+        var lat = position.latitude;
+        var long = position.longitude;
+
+        List<geo.Placemark> placemarks = await geo.placemarkFromCoordinates(
+            position.latitude, position.longitude);
+
+        var place = placemarks[0];
+
+        Address = ' ${place.locality}, ${place.administrativeArea}, ${place
+            .subAdministrativeArea}, ${place.country},${place.postalCode}';
+
+        print("Function " + Address!);
+        Provider.of<user_details>(context,listen: false).update_loc(Address!);
+      }
+      else{
+      }
+    }
+    catch(err){
+    }
+  }
+
+  Future<PermissionStatus> _getLocationPermission() async {
+    final PermissionStatus permission = await LocationPermissions()
+        .checkPermissionStatus(level: LocationPermissionLevel.location);
+    if (permission != PermissionStatus.granted) {
+      final PermissionStatus permissionStatus = await LocationPermissions()
+          .requestPermissions(
+          permissionLevel: LocationPermissionLevel.location);
+      return permissionStatus;
+    } else {
+      return permission;
+    }
+  }
 
 
   Future<void> _alertDialogBox(String error) async {
@@ -96,7 +147,7 @@ class _edit_profileState extends State<edit_profile> {
       body: SingleChildScrollView(
         child: FadeAnimation(
           1, Container(
-            height: SizeConfig.height!*60,
+            height: SizeConfig.height!*75,
             margin: EdgeInsets.symmetric(vertical: SizeConfig.height!*4),
             child: Form(
               key: _formKey,
@@ -243,51 +294,96 @@ class _edit_profileState extends State<edit_profile> {
                       )
                   ),
                   Expanded(
-                      child: Container(
-                        padding:EdgeInsets.symmetric(horizontal: SizeConfig.width! * 6),
-                        height: SizeConfig.height! * 4,
-                        alignment: Alignment.center,
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(width: 0.5,color: Colors.grey.shade500),
-                              borderRadius: BorderRadius.circular(10)
-                          ),
-                          child: TextFormField(
-                            onChanged: (val) {
-                              if(val.isEmpty || val == ""){
-                                context.read<user_details>().update_loc(new_loc) as String;
-                              }
-                              else{
-                                context.read<user_details>().update_loc(val) as String;
-                              }
+                    flex: 2,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child:GestureDetector(
+                            onTap: (){
+                              getCurrentLocation();
                             },
-                            validator: (value) {
-                              if (value!.isEmpty || value == "") {
-                                return "Location should not be left empty";
-                              }
-                              return null;
-                            },
-                            autovalidate: _autovalidate,
-                            decoration:
-                            InputDecoration(
-                                hintText: context.watch<user_details>().Loc,
-                                errorMaxLines: 1,
-                                prefixIcon: Icon(Icons.gps_fixed,size: SizeConfig.height! * 3,),
-                                contentPadding: EdgeInsets.symmetric(
-                                    vertical: 15, horizontal: 20),
-                                hintStyle: GoogleFonts.poppins(
-                                    fontSize: SizeConfig.height! * 2.3,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.grey),
-                                border: InputBorder.none
+                            child: Container(
+                              alignment: Alignment.center,
+                              margin: EdgeInsets.symmetric(
+                                  vertical: SizeConfig.height! * 1.5,
+                                  horizontal: SizeConfig.width! * 5),
+                              height: SizeConfig.height! * 2,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Color(0xff23ADE8),
+                              ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.location_searching, color: Colors.white,size: SizeConfig.height!*3,),
+                                  Text(
+                                    "   Current Location",
+                                    style: Theme.of(context).textTheme.subtitle2,
+                                  ),
+                                ],
+                              ),
                             ),
-                            style: GoogleFonts.poppins(
-                                fontSize: SizeConfig.height! * 2,
-                                color: Colors.black),
                           ),
+                          ),
+                        Expanded(child: Container(alignment: Alignment.center,child: Text("Or"),)),
+
+                        Expanded(
+                          flex: 2,
+                            child: Container(
+                              padding:EdgeInsets.symmetric(horizontal: SizeConfig.width! * 6),
+                              height: SizeConfig.height! * 4,
+                              alignment: Alignment.center,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    border: Border.all(width: 0.5,color: Colors.grey.shade500),
+                                    borderRadius: BorderRadius.circular(10)
+                                ),
+                                child: TextFormField(
+                                  onChanged: (val) {
+                                    if(val.isEmpty || val == ""){
+                                      context.read<user_details>().update_loc(new_loc) as String;
+                                    }
+                                    else{
+                                      context.read<user_details>().update_loc(val) as String;
+                                    }
+                                  },
+                                  validator: (value) {
+                                    if (value!.isEmpty || value == "") {
+                                      return "Location should not be left empty";
+                                    }
+                                    return null;
+                                  },
+                                  autovalidate: _autovalidate,
+                                  decoration:
+                                  InputDecoration(
+                                      hintText: context.watch<user_details>().Update_Loc,
+                                      errorMaxLines: 1,
+                                      prefixIcon: Icon(Icons.gps_fixed,size: SizeConfig.height! * 3,),
+                                      contentPadding: EdgeInsets.symmetric(
+                                          vertical: 15, horizontal: 20),
+                                      hintStyle: GoogleFonts.poppins(
+                                          fontSize: SizeConfig.height! * 2.3,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.grey),
+                                      border: InputBorder.none
+                                  ),
+                                  style: GoogleFonts.poppins(
+                                      fontSize: SizeConfig.height! * 2,
+                                      color: Colors.black),
+                                ),
+                              ),
+                            )
                         ),
-                      )
+
+                      ],
+                    ),
                   ),
+
                   Expanded(child: GestureDetector(
                     onTap: (){
                       _submitform();

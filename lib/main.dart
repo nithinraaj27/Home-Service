@@ -104,13 +104,18 @@ class helperone extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig.init(context);
 
-    return Consumer<AppStateNotifier>(builder: (context, appState, child) {
-      return MaterialApp(
-        home: signin(),
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.theme,
-      );
-    });
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<user_details>.value(value: (user_details())),
+      ],
+      child: Consumer<AppStateNotifier>(builder: (context, appState, child) {
+        return MaterialApp(
+          home: signin(),
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.theme,
+        );
+      }),
+    );
   }
 }
 

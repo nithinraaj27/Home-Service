@@ -8,7 +8,15 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:home_service/Animation/animation.dart';
 import 'package:home_service/screens/Main_Page/signin.dart';
+import 'package:home_service/service/user_details.dart';
 import 'package:home_service/sizeconfig.dart';
+
+
+import 'package:geocoding/geocoding.dart' as geo;
+import 'package:geolocator/geolocator.dart' as geolocator;
+import 'package:geolocator/geolocator.dart';
+import 'package:location_permissions/location_permissions.dart';
+import 'package:provider/provider.dart';
 
 
 
@@ -36,6 +44,54 @@ class _signupState extends State<signup> {
     obscure_text = true;
   }
 
+
+  String? Address = "";
+
+  Future<void> getCurrentLocation() async {
+    final PermissionStatus permission = await _getLocationPermission();
+    try{
+      if (permission == PermissionStatus.granted) {
+        Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high,
+          forceAndroidLocationManager: true,
+        );
+
+        var lat = position.latitude;
+        var long = position.longitude;
+
+        List<geo.Placemark> placemarks = await geo.placemarkFromCoordinates(
+            position.latitude, position.longitude);
+
+        var place = placemarks[0];
+
+        Address = ' ${place.locality}, ${place.administrativeArea}, ${place
+            .subAdministrativeArea}, ${place.country},${place.postalCode}';
+
+        print("Function " + Address!);
+        Provider.of<user_details>(context,listen: false).set_new_loc(Address!);
+        setState(() {
+          location = Address!;
+        });
+      }
+      else{
+      }
+    }
+    catch(err){
+    }
+  }
+
+  Future<PermissionStatus> _getLocationPermission() async {
+    final PermissionStatus permission = await LocationPermissions()
+        .checkPermissionStatus(level: LocationPermissionLevel.location);
+    if (permission != PermissionStatus.granted) {
+      final PermissionStatus permissionStatus = await LocationPermissions()
+          .requestPermissions(
+          permissionLevel: LocationPermissionLevel.location);
+      return permissionStatus;
+    } else {
+      return permission;
+    }
+  }
 
 
   Future<String?> _signup() async {
@@ -308,49 +364,95 @@ class _signupState extends State<signup> {
                         )
                     ),
                     Expanded(
-                        child: FadeAnimation(
-                          1.4,Container(
-                            padding:EdgeInsets.symmetric(horizontal: SizeConfig.width! * 6),
-                            height: SizeConfig.height! * 4,
-                            alignment: Alignment.center,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(width: 0.5,color: Colors.grey.shade500),
-                                  borderRadius: BorderRadius.circular(15)
-                              ),
-                              child: TextFormField(
-                                onChanged: (val) {
-                                  setState(() {
-                                    location = val;
-                                  });
+                      flex: 2,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: FadeAnimation(
+                              1.4,GestureDetector(
+                                onTap: (){
+                                  getCurrentLocation();
                                 },
-                                validator: (value) {
-                                  if (value!.isEmpty && value == "") {
-                                    return "Location should not be left empty";
-                                  }
-                                  return null;
-                                },
-                                autovalidate: _autovalidate,
-                                decoration:
-                                InputDecoration(
-                                    hintText: "Location",
-                                    errorMaxLines: 1,
-                                    prefixIcon: Icon(Icons.gps_fixed,size: SizeConfig.height! * 3,),
-                                    contentPadding: EdgeInsets.symmetric(
-                                        vertical: 15, horizontal: 20),
-                                    hintStyle: GoogleFonts.poppins(
-                                        fontSize: SizeConfig.height! * 2.3,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.grey),
-                                    border: InputBorder.none
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  margin: EdgeInsets.symmetric(
+                                      vertical: SizeConfig.height! * 1.5,
+                                      horizontal: SizeConfig.width! * 5),
+                                  height: SizeConfig.height! * 2,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    color: Color(0xff23ADE8),
+                                  ),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.location_searching, color: Colors.white,size: SizeConfig.height!*3,),
+                                      Text(
+                                        "   Current Location",
+                                        style: Theme.of(context).textTheme.subtitle2,
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                style: GoogleFonts.poppins(
-                                    fontSize: SizeConfig.height! * 2,
-                                    color: Colors.black),
                               ),
                             ),
                           ),
-                        )
+                          Expanded(child: Container(alignment: Alignment.center,child: Text("Or"),)),
+
+                          Expanded(
+                            flex:2,
+                              child: FadeAnimation(
+                                1.4,Container(
+                                padding:EdgeInsets.symmetric(horizontal: SizeConfig.width! * 6),
+                                height: SizeConfig.height! * 4,
+                                alignment: Alignment.center,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(width: 0.5,color: Colors.grey.shade500),
+                                      borderRadius: BorderRadius.circular(15)
+                                  ),
+                                  child: TextFormField(
+                                    onChanged: (val) {
+                                      setState(() {
+                                        location = val;
+                                      });
+                                    },
+                                    validator: (value) {
+                                      if (value!.isEmpty && value == "") {
+                                        return "Location should not be left empty";
+                                      }
+                                      return null;
+                                    },
+                                    autovalidate: _autovalidate,
+                                    decoration:
+                                    InputDecoration(
+                                        hintText: context.watch<user_details>().New_Loc,
+                                        errorMaxLines: 1,
+                                        prefixIcon: Icon(Icons.gps_fixed,size: SizeConfig.height! * 3,),
+                                        contentPadding: EdgeInsets.symmetric(
+                                            vertical: 15, horizontal: 20),
+                                        hintStyle: GoogleFonts.poppins(
+                                            fontSize: SizeConfig.height! * 2.3,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.grey),
+                                        border: InputBorder.none
+                                    ),
+                                    style: GoogleFonts.poppins(
+                                        fontSize: SizeConfig.height! * 2,
+                                        color: Colors.black),
+                                  ),
+                                ),
+                              ),
+                              )
+                          ),
+
+                        ],
+                      ),
                     ),
                     Expanded(
                       child: FadeAnimation(
