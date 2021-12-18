@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:home_service/screens/main.dart';
 import 'package:home_service/screens/Main_Page/signin.dart';
 import 'package:home_service/service/get_services.dart';
@@ -140,6 +143,78 @@ class helpertwo extends StatelessWidget {
   }
 }
 
+class helperfour extends StatefulWidget {
+  const helperfour({Key? key}) : super(key: key);
+
+  @override
+  _helperfourState createState() => _helperfourState();
+}
+
+class _helperfourState extends State<helperfour> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Timer(const Duration(seconds: 3), () {
+      FirebaseAuth.instance.signOut();
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            elevation: 0,
+            backgroundColor: Color(0xff23ADE8),
+            leading: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => helperone()));
+                },
+                child: Icon(
+                  Icons.chevron_left,
+                  size: SizeConfig.height! * 3.5,
+                  color: Colors.white,
+                )),
+            title: Text(
+              "Error Message",
+              style: GoogleFonts.poppins(
+                  fontSize: SizeConfig.height! * 2.5, color: Colors.white),
+            ),
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  "You have no permisson",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.poppins(
+                      fontSize: SizeConfig.height! * 4,
+                      color: Color(0xff23ADE8),
+                      fontWeight: FontWeight.w600),
+                ),
+                Image.asset(
+                  "assets/error.gif",
+                  fit: BoxFit.fill,
+                ),
+                Text(
+                  "Download the USER APP",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.poppins(
+                      fontSize: SizeConfig.height! * 4,
+                      color: Colors.red,
+                      fontWeight: FontWeight.w600),
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
+}
+
 
 class userfinder extends StatefulWidget {
 
@@ -176,7 +251,7 @@ class _userfinderState extends State<userfinder> {
     if(role == 'user') {
       return helpertwo();
     } else{
-      return helperone();
+      return helperfour();
     }
   }
 }
