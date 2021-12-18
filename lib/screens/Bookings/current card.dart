@@ -224,9 +224,7 @@ class _current_cardState extends State<current_card> {
                                 })
                                 .whenComplete(
                                     () => _alertBox("Order Cancelled"))
-                                .whenComplete(() => Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                        builder: (context) => HomePage())));
+                                .whenComplete(() => Navigator.of(context).pop());
                           },
                           child: Icon(
                             Icons.cancel,

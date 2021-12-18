@@ -341,10 +341,10 @@ class _signinState extends State<signin> {
                           children: [
                             Expanded(
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Expanded(
-                                    flex: 2,
+                                    flex: 3,
                                     child: Container(
                                       alignment: Alignment.centerRight,
                                         child: Text("Doesn't have an account ?",style: Theme.of(context).textTheme.headline3!.merge(TextStyle(color: Colors.black54)),)),

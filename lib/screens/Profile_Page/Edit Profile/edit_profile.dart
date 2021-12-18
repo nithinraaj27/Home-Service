@@ -44,12 +44,16 @@ class _edit_profileState extends State<edit_profile> {
 
   Future<void> getCurrentLocation() async {
     final PermissionStatus permission = await _getLocationPermission();
-    try{
+    print("p "+permission.toString());
+
+    try {
       if (permission == PermissionStatus.granted) {
         Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high,
           forceAndroidLocationManager: true,
         );
+
+        print("posi "+position.toString());
 
         var lat = position.latitude;
         var long = position.longitude;
@@ -59,16 +63,16 @@ class _edit_profileState extends State<edit_profile> {
 
         var place = placemarks[0];
 
-        Address = ' ${place.locality}, ${place.administrativeArea}, ${place
-            .subAdministrativeArea}, ${place.country},${place.postalCode}';
+        Address =
+        ' ${place.locality}, ${place.administrativeArea}, ${place.subAdministrativeArea}, ${place.country},${place.postalCode}';
 
         print("Function " + Address!);
         Provider.of<user_details>(context,listen: false).update_loc(Address!);
+      } else {
+        _alertDialogBox(permission.toString());
       }
-      else{
-      }
-    }
-    catch(err){
+    } catch (err) {
+      _alertDialogBox(err.toString()+"\nKindly Turn on location");
     }
   }
 
@@ -79,11 +83,14 @@ class _edit_profileState extends State<edit_profile> {
       final PermissionStatus permissionStatus = await LocationPermissions()
           .requestPermissions(
           permissionLevel: LocationPermissionLevel.location);
+      print("Permission"+permissionStatus.toString());
       return permissionStatus;
     } else {
       return permission;
     }
   }
+
+
 
 
   Future<void> _alertDialogBox(String error) async {
