@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:home_service/Animation/animation.dart';
+import 'package:home_service/screens/Main_Page/location.dart';
 import 'package:home_service/screens/main.dart';
 import 'package:home_service/sizeconfig.dart';
 import 'package:pinput/pin_put/pin_put.dart';
@@ -226,11 +227,11 @@ class _OTPScreenState extends State<OTPScreen> {
                     if (value.user != null) {
                       Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => mainPage()),
+                          MaterialPageRoute(builder: (context) => location_page(phone: widget.phone,)),
                               (route) => false);
                     }
                   }).whenComplete(() async=>{
-                    await FirebaseFirestore.instance.collection("mobileusers").doc(widget.phone).set(
+                    await FirebaseFirestore.instance.collection("userdetails").doc(widget.phone).set(
                         {
                           "Name" : "Verified Customer",
                           "Mobile": widget.phone,
@@ -261,7 +262,7 @@ class _OTPScreenState extends State<OTPScreen> {
             if (value.user != null) {
               Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => mainPage()),
+                  MaterialPageRoute(builder: (context) => location_page(phone: widget.phone)),
                       (route) => false);
             }
           });

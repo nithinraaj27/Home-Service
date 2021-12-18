@@ -17,6 +17,8 @@ class user_details with ChangeNotifier{
 
   String _new_loc = "Location";
 
+  String _mobile_user_loc = "Location";
+
 
   String get Name => _name;
   String get Mobile => _mobile;
@@ -26,6 +28,8 @@ class user_details with ChangeNotifier{
   String get New_Loc => _new_loc;
 
   String get Update_Loc => _updatedLoc;
+
+  String get Mobile_Loc => _mobile_user_loc;
 
 
   Future<void> set_data() async{
@@ -65,6 +69,11 @@ class user_details with ChangeNotifier{
 
   Future<void> set_new_loc(String a) async{
     this._new_loc = a;
+    notifyListeners();
+  }
+
+  Future<void> set_mob_loc(String a) async{
+    this._mobile_user_loc = a;
     notifyListeners();
   }
 

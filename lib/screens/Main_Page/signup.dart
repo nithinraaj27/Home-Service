@@ -12,7 +12,6 @@ import 'package:home_service/service/user_details.dart';
 import 'package:home_service/sizeconfig.dart';
 
 import 'package:geocoding/geocoding.dart' as geo;
-import 'package:geolocator/geolocator.dart' as geolocator;
 import 'package:geolocator/geolocator.dart';
 import 'package:location_permissions/location_permissions.dart';
 import 'package:provider/provider.dart';

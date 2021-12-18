@@ -90,9 +90,6 @@ class _edit_profileState extends State<edit_profile> {
     }
   }
 
-
-
-
   Future<void> _alertDialogBox(String error) async {
     return showDialog(
         context: context,
