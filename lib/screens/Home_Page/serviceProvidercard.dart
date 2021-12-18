@@ -112,7 +112,7 @@ class _ServiceProvidersCardState extends State<ServiceProvidersCard> {
                     Text(
                       widget.status,
                       style: Theme.of(context).textTheme.headline3!.copyWith(
-                            fontSize: SizeConfig.height! * 1.7,
+                            fontSize: SizeConfig.height! * 1.2,
                             fontWeight: FontWeight.bold,
                             color: widget.status == "Open"
                                 ? Colors.green
