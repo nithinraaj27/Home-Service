@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:home_service/Animation/animation.dart';
 import 'package:home_service/screens/Main_Page/location.dart';
-import 'package:home_service/screens/main.dart';
 import 'package:home_service/sizeconfig.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 

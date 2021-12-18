@@ -149,7 +149,7 @@ class userfinder extends StatefulWidget {
 
 class _userfinderState extends State<userfinder> {
 
-  String? role;
+  String? role = "role";
 
   Future<void> checkrole() async {
     User user = FirebaseAuth.instance.currentUser!;
@@ -162,6 +162,7 @@ class _userfinderState extends State<userfinder> {
     });
   }
 
+
   @override
   void initState() {
     // TODO: implement initState
@@ -172,6 +173,10 @@ class _userfinderState extends State<userfinder> {
 
   @override
   Widget build(BuildContext context) {
-    return (role == 'user')?  helpertwo() : helpertwo();
+    if(role == 'user') {
+      return helpertwo();
+    } else{
+      return helperone();
+    }
   }
 }
