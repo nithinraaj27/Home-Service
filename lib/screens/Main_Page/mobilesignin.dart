@@ -9,6 +9,8 @@ import 'package:home_service/screens/Main_Page/location.dart';
 import 'package:home_service/sizeconfig.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 
+import '../main.dart';
+
 class mobileSignIn extends StatefulWidget {
   const mobileSignIn({Key? key}) : super(key: key);
 
@@ -261,7 +263,7 @@ class _OTPScreenState extends State<OTPScreen> {
             if (value.user != null) {
               Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => location_page(phone: widget.phone)),
+                  MaterialPageRoute(builder: (context) => mainPage()),
                       (route) => false);
             }
           });

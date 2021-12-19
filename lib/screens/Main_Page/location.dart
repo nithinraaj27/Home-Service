@@ -56,10 +56,10 @@ class _location_pageState extends State<location_page> {
         Address =
             ' ${place.locality}, ${place.administrativeArea}, ${place.subAdministrativeArea}, ${place.country},${place.postalCode}';
 
-        print("Function " + Address!);
-        Provider.of<user_details>(context, listen: false).set_mob_loc(Address!);
+        print("Function " + Address);
+        Provider.of<user_details>(context, listen: false).set_mob_loc(Address);
         setState(() {
-          location = Address!;
+          location = Address;
         });
       } else {}
     } catch (err) {

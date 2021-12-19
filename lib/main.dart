@@ -143,6 +143,20 @@ class helpertwo extends StatelessWidget {
   }
 }
 
+class helperthree extends StatefulWidget {
+  const helperthree({Key? key}) : super(key: key);
+
+  @override
+  _helperthreeState createState() => _helperthreeState();
+}
+
+class _helperthreeState extends State<helperthree> {
+  @override
+  Widget build(BuildContext context) {
+    return helperfour();
+  }
+}
+
 class helperfour extends StatefulWidget {
   const helperfour({Key? key}) : super(key: key);
 
@@ -235,6 +249,8 @@ class _userfinderState extends State<userfinder> {
     setState(() {
       role = snap['Role'];
     });
+    print("Printing role");
+    print(role);
   }
 
 
@@ -248,10 +264,6 @@ class _userfinderState extends State<userfinder> {
 
   @override
   Widget build(BuildContext context) {
-    if(role == 'user') {
-      return helpertwo();
-    } else{
-      return helperfour();
-    }
+    return role == 'user'? helpertwo() : helperthree();
   }
 }
