@@ -64,7 +64,7 @@ class _signinState extends State<signin> {
             content: Container(
               child: Text(
                 error,
-                style: TextStyle(color: Theme.of(context).focusColor),
+                style: TextStyle(color: Colors.black,fontSize: SizeConfig.height!*2.5),
               ),
             ),
             actions: [

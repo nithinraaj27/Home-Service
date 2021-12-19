@@ -97,6 +97,7 @@ class _forgetpasswordState extends State<forgetpassword> {
                             }
                             return null;
                           },
+                          autovalidateMode: AutovalidateMode.disabled,
                           autovalidate: _autovalidate,
                           decoration: InputDecoration(
                               hintText: "Email",

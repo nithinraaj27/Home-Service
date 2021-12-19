@@ -229,7 +229,6 @@ class _edit_profileState extends State<edit_profile> {
                               }
                               return null;
                             },
-
                             autovalidate: _autovalidate,
                             decoration:
                             InputDecoration(
